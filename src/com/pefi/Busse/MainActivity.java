@@ -6,9 +6,11 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 
 public class MainActivity extends Activity {
-    public final static String TAG = "MainActivity";
+    private final static String TAG = "MainActivity";
 
 
     @Override
@@ -20,8 +22,15 @@ public class MainActivity extends Activity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
 
-    
+        return true;
+    }
+
+
     public void checkInternetConnection(){
 
 

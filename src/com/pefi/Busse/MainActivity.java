@@ -22,6 +22,10 @@ public class MainActivity extends Activity {
 
         checkInternetConnection();
 
+
+        new APIInterface().execute("Place/GetStop/17");
+
+
     }
 
     /**

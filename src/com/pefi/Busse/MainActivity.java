@@ -11,11 +11,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.SearchView;
 import android.widget.TextView;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.json.JSONArray;
 
 public class MainActivity extends Activity {
     private final static String TAG = "MainActivity";
+
+    APIInterface api;
 
 
     @Override
@@ -25,21 +26,21 @@ public class MainActivity extends Activity {
 
         checkInternetConnection();
 
-        APIInterface api = new APIInterface();
+        api = new APIInterface();
         api.execute("Place/GetStop/45?json=true");
 
         TextView name = (TextView) findViewById(R.id.stopName);
 
         api.setMyTaskCompleteListener(new APIInterface.OnTaskComplete() {
             @Override
-            public void setMyTaskComplete(JSONObject json) {
+            public void setMyTaskComplete(JSONArray json) {
                 //do something with JSON object
 
-                try {
-                    name.setText(json.getString("Name"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                //try {
+                //    name.setText(json.getString("Name"));
+                //} catch (JSONException e) {
+                //    e.printStackTrace();
+                //}
             }
         });
 

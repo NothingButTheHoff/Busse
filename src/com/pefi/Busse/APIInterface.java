@@ -7,8 +7,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,17 +19,19 @@ import java.io.InputStreamReader;
  * Created by pererikfinstad on 11/11/14.
  */
 public class APIInterface extends AsyncTask<String, String, String> {
+
     public final static String TAG = "APIInterface";
     public final static String API_URL = "http://reisapi.ruter.no/";
 
     private OnTaskComplete onTaskComplete;
 
-    JSONObject json;
+    //JSONObject json;
+    JSONArray json;
     InputStream is = null;
 
 
     public interface OnTaskComplete {
-        public void setMyTaskComplete(JSONObject json);
+        public void setMyTaskComplete(JSONArray json);
     }
 
     public void setMyTaskCompleteListener(OnTaskComplete onTaskComplete) {
@@ -42,11 +44,11 @@ public class APIInterface extends AsyncTask<String, String, String> {
 
         String urlString = strings[0]; // URL to call
 
-        String result = "";
+        String result = "Success!";
 
         // GET
         try {
-
+            Log.i(TAG, "URL to be called: " + API_URL + urlString );
             DefaultHttpClient httpclient = new DefaultHttpClient();
             HttpGet get = new HttpGet(API_URL + urlString);
             try {
@@ -78,8 +80,9 @@ public class APIInterface extends AsyncTask<String, String, String> {
                 }
                 is.close();
                 String jsonString = sb.toString();
+                System.out.println("JSON-string from API: " + jsonString);
                 try {
-                    json = new JSONObject(jsonString);
+                    json = new JSONArray(jsonString);
                 }catch (JSONException e){
                     e.getMessage();
                 }
@@ -90,7 +93,7 @@ public class APIInterface extends AsyncTask<String, String, String> {
             e.getMessage();
         }
 
-        System.out.println("JSON: " + json);
+        System.out.println("JSONObject: " + json);
         return result;
 
     }

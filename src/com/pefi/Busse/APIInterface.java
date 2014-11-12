@@ -22,8 +22,18 @@ public class APIInterface extends AsyncTask<String, String, String> {
     public final static String TAG = "APIInterface";
     public final static String API_URL = "http://reisapi.ruter.no/";
 
-    JSONObject jsonObject;
+    private OnTaskComplete onTaskComplete;
+
+    JSONObject json;
     InputStream is = null;
+
+    public interface OnTaskComplete {
+        public void setMyTaskComplete(JSONObject json);
+    }
+
+    public void setMyTaskCompleteListener(OnTaskComplete onTaskComplete) {
+        this.onTaskComplete = onTaskComplete;
+    }
 
 
     @Override
@@ -66,11 +76,11 @@ public class APIInterface extends AsyncTask<String, String, String> {
                     sb.append(line + "\n");
                 }
                 is.close();
-                String json = sb.toString();
+                String jsonString = sb.toString();
                 try {
-                    jsonObject = new JSONObject(json);
+                    json = new JSONObject(jsonString);
                 }catch (JSONException e){
-                     e.getMessage();
+                    e.getMessage();
                 }
             }catch (IOException e){
                 e.getMessage();
@@ -79,15 +89,17 @@ public class APIInterface extends AsyncTask<String, String, String> {
             e.getMessage();
         }
 
-        System.out.println("JSON: " + jsonObject);
+        System.out.println("JSON: " + json);
         return result;
 
     }
 
     @Override
     protected void onPostExecute(String result) {
+        onTaskComplete.setMyTaskComplete(json);
         Log.i(TAG, "Result: " + result);
     }
+
 
 
     /**

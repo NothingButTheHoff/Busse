@@ -10,6 +10,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.SearchView;
+import android.widget.TextView;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MainActivity extends Activity {
     private final static String TAG = "MainActivity";
@@ -22,9 +25,23 @@ public class MainActivity extends Activity {
 
         checkInternetConnection();
 
+        APIInterface api = new APIInterface();
+        api.execute("Place/GetStop/45?json=true");
 
-        new APIInterface().execute("Place/GetStop/17?json=true");
+        TextView name = (TextView) findViewById(R.id.stopName);
 
+        api.setMyTaskCompleteListener(new APIInterface.OnTaskComplete() {
+            @Override
+            public void setMyTaskComplete(JSONObject json) {
+                //do something with JSON object
+
+                try {
+                    name.setText(json.getString("Name"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
     }
 

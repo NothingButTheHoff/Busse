@@ -43,13 +43,13 @@ public class SearchResultActivity extends Activity {
             @Override
             public void setMyTaskComplete(JSONArray json) {
 
-                if (json != null){
+                if (json != null && json.length() > 0){
 
                     StringBuilder sb = new StringBuilder();
                     for (int i = 0; i < json.length(); i++){
                         try {
                             JSONObject jo = json.getJSONObject(i);
-                            sb.append(jo.getString("Name") +  "\n");
+                            sb.append(jo.getString("Name") + " (" + jo.getString("District") +  ")\n");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

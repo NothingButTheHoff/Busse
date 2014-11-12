@@ -23,7 +23,7 @@ public class MainActivity extends Activity {
         checkInternetConnection();
 
 
-        new APIInterface().execute("Place/GetStop/17");
+        new APIInterface().execute("Place/GetStop/17?json=true");
 
 
     }
@@ -63,7 +63,7 @@ public class MainActivity extends Activity {
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
-            Log.i(TAG, "Connected to internet");
+            Log.i(TAG, "Connected to the internet");
         } else {
             Log.i(TAG, "Internet is not available");
         }

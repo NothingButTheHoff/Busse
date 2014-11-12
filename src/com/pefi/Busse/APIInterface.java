@@ -2,11 +2,18 @@ package com.pefi.Busse;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /**
  * Created by pererikfinstad on 11/11/14.
@@ -14,6 +21,9 @@ import java.net.URL;
 public class APIInterface extends AsyncTask<String, String, String> {
     public final static String TAG = "APIInterface";
     public final static String API_URL = "http://reisapi.ruter.no/";
+
+    JSONObject jsonObject;
+    InputStream is = null;
 
 
     @Override
@@ -23,33 +33,53 @@ public class APIInterface extends AsyncTask<String, String, String> {
 
         String result = "";
 
-        InputStream in = null;
-
         // GET
         try {
 
-            Log.i(TAG, "URL to be sent: " + API_URL + urlString);
+            DefaultHttpClient httpclient = new DefaultHttpClient();
+            HttpGet get = new HttpGet(API_URL + urlString);
+            try {
+                HttpResponse httpresponse = httpclient.execute(get);
+                HttpEntity httpentity = httpresponse.getEntity();
+                is = httpentity.getContent();
 
-            URL url = new URL(API_URL + urlString);
+            } catch (ClientProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-
-            in = new BufferedInputStream(urlConnection.getInputStream());
-
-
-
-            Log.i(TAG, "InputStream = " + convertBufferedInputStreamToString(in));
-
-            JSONObject json = new JSONObject(convertBufferedInputStreamToString(in));
-            System.out.println(json.toString());
         } catch (Exception e ) {
-
-            System.out.println("Could not connect to the API: " + e.getMessage());
 
             return e.getMessage();
 
         }
 
+        //Convert to JSON
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            StringBuilder sb = new StringBuilder();
+            String line;
+
+            try {
+                while ((line = reader.readLine()) != null){
+                    sb.append(line + "\n");
+                }
+                is.close();
+                String json = sb.toString();
+                try {
+                    jsonObject = new JSONObject(json);
+                }catch (JSONException e){
+                     e.getMessage();
+                }
+            }catch (IOException e){
+                e.getMessage();
+            }
+        }catch (Exception e){
+            e.getMessage();
+        }
+
+        System.out.println("JSON: " + jsonObject);
         return result;
 
     }
@@ -76,6 +106,7 @@ public class APIInterface extends AsyncTask<String, String, String> {
             result += line;
 
         inputStream.close();
+
         return result;
 
     }

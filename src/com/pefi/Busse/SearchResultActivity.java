@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by pererikfinstad on 11/11/14.
@@ -13,6 +16,7 @@ public class SearchResultActivity extends Activity {
     public static final String TAG = "SearchResultActivity";
 
     APIInterface api;
+    TextView places;
 
 
     @Override
@@ -21,6 +25,8 @@ public class SearchResultActivity extends Activity {
         setContentView(R.layout.search);
 
 
+
+        places = (TextView) findViewById(R.id.places);
         api = new APIInterface();
 
         // Get the intent, verify the action and get the query
@@ -35,7 +41,18 @@ public class SearchResultActivity extends Activity {
         api.setMyTaskCompleteListener(new APIInterface.OnTaskComplete() {
             @Override
             public void setMyTaskComplete(JSONArray json) {
-                //Log.d(TAG, json.);
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < json.length(); i++){
+                    try {
+                        JSONObject jo = json.getJSONObject(i);
+                        sb.append(jo.getString("Name") +  "\n");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                places.setText(sb);
+                System.out.println(sb.toString());
 
 
             }

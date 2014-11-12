@@ -68,7 +68,7 @@ public class APIInterface extends AsyncTask<String, String, String> {
 
         }
 
-        //Convert to JSON
+        //Convert to JSONArray
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
             StringBuilder sb = new StringBuilder();

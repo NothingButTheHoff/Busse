@@ -34,6 +34,7 @@ public class SearchResultActivity extends Activity {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
 
+            query = query.replaceAll("\\s+","");
             search(query);
 
         }
@@ -41,18 +42,25 @@ public class SearchResultActivity extends Activity {
         api.setMyTaskCompleteListener(new APIInterface.OnTaskComplete() {
             @Override
             public void setMyTaskComplete(JSONArray json) {
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < json.length(); i++){
-                    try {
-                        JSONObject jo = json.getJSONObject(i);
-                        sb.append(jo.getString("Name") +  "\n");
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
 
-                places.setText(sb);
-                System.out.println(sb.toString());
+                if (json != null){
+
+                    StringBuilder sb = new StringBuilder();
+                    for (int i = 0; i < json.length(); i++){
+                        try {
+                            JSONObject jo = json.getJSONObject(i);
+                            sb.append(jo.getString("Name") +  "\n");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    places.setText(sb);
+                    System.out.println(sb.toString());
+                }
+                else {
+                    places.setText("No results");
+                }
 
 
             }

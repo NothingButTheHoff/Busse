@@ -9,6 +9,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,24 +19,41 @@ import java.io.InputStreamReader;
 /**
  * Created by pererikfinstad on 11/11/14.
  */
+
 public class APIInterface extends AsyncTask<String, String, String> {
 
     public final static String TAG = "APIInterface";
     public final static String API_URL = "http://reisapi.ruter.no/";
 
     private OnTaskComplete onTaskComplete;
+    private OnParseJSONObjectComplete onParseJSONObjectComplete;
 
-    //JSONObject json;
-    JSONArray json;
+    JSONObject jsonObject;
+    JSONArray jsonArray;
     InputStream is = null;
+    String jsonString;
 
+
+
+    //Interface for JSON Arrays
 
     public interface OnTaskComplete {
-        public void setMyTaskComplete(JSONArray json);
+        public void setTaskComplete(JSONArray jsonArray);
     }
 
-    public void setMyTaskCompleteListener(OnTaskComplete onTaskComplete) {
+    public void setTaskCompleteListener(OnTaskComplete onTaskComplete) {
+
         this.onTaskComplete = onTaskComplete;
+    }
+
+   // Interface for JSON Objects
+
+    public interface OnParseJSONObjectComplete {
+        public void setParseJSONObjectComplete(JSONObject jsonObject);
+    }
+
+    public void setParseJSONObjectCompleteListener(OnParseJSONObjectComplete onParseJSONObjectComplete){
+        this.onParseJSONObjectComplete = onParseJSONObjectComplete;
     }
 
 
@@ -49,8 +67,10 @@ public class APIInterface extends AsyncTask<String, String, String> {
         // GET
         try {
             Log.i(TAG, "URL to be called: " + API_URL + urlString );
+
             DefaultHttpClient httpclient = new DefaultHttpClient();
             HttpGet get = new HttpGet(API_URL + urlString);
+
             try {
                 HttpResponse httpresponse = httpclient.execute(get);
                 HttpEntity httpentity = httpresponse.getEntity();
@@ -63,69 +83,94 @@ public class APIInterface extends AsyncTask<String, String, String> {
             }
 
         } catch (Exception e ) {
-
             return e.getMessage();
-
         }
 
-        //Convert to JSONArray
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-            StringBuilder sb = new StringBuilder();
-            String line;
+        jsonString = buildString(is);
 
-            try {
-                while ((line = reader.readLine()) != null){
-                    sb.append(line + "\n");
-                }
-                is.close();
-                String jsonString = sb.toString();
-                System.out.println("JSON-string from API: " + jsonString);
-                try {
-                    json = new JSONArray(jsonString);
-                }catch (JSONException e){
-                    e.getMessage();
-                }
-            }catch (IOException e){
-                e.getMessage();
-            }
-        }catch (Exception e){
-            e.getMessage();
+        //Parse to JSON
+        jsonArray = parseJSONArray(jsonString);
+
+        if (jsonArray == null){
+            jsonObject = parseJSONObject(jsonString);
         }
 
-        System.out.println("JSONObject: " + json);
         return result;
 
     }
 
     @Override
     protected void onPostExecute(String result) {
-        onTaskComplete.setMyTaskComplete(json);
+
+        if (jsonArray != null){
+            onTaskComplete.setTaskComplete(jsonArray);
+        }
+
+        if (jsonObject != null){
+            onParseJSONObjectComplete.setParseJSONObjectComplete(jsonObject);
+        }
+        else{
+
+        }
+
         Log.i(TAG, "Result: " + result);
     }
 
 
+    private String buildString(InputStream is){
+        String jsonString;
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            StringBuilder sb = new StringBuilder();
+            String line;
 
-    /**
-     * Method for checking the data received from the web API
-     *
-     * @param inputStream Bytestream of the data received from the web resource
-     * @return  Returns a readable string of the converted bytestream
-     * @throws IOException
-     */
-    private static String convertBufferedInputStreamToString(InputStream inputStream) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
-        String line = "";
-        String result = "";
+            try {
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line + "\n");
+                }
+                is.close();
+                jsonString = sb.toString();
 
-        while((line = bufferedReader.readLine()) != null)
-            result += line;
+                System.out.println("JSON-string from API: " + jsonString);
+                return jsonString;
 
-        inputStream.close();
-
-        return result;
+            } catch (IOException e) {
+               return e.getMessage();
+            }
+        } catch (Exception e) {
+           return e.getMessage();
+        }
 
     }
+
+
+
+    private JSONArray parseJSONArray(String s) {
+        try {
+            jsonArray = new JSONArray(s);
+
+        } catch (JSONException e) {
+            e.getMessage();
+        }
+
+        return jsonArray;
+
+    }
+
+    private JSONObject parseJSONObject(String s) {
+        try {
+            jsonObject = new JSONObject(s);
+
+        } catch (JSONException e) {
+            e.getMessage();
+        }
+
+        return jsonObject;
+
+    }
+
+
+
 
 
 } // end APIInterface

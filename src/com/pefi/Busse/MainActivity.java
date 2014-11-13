@@ -12,6 +12,8 @@ import android.view.MenuInflater;
 import android.widget.SearchView;
 import android.widget.TextView;
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class MainActivity extends Activity {
     private final static String TAG = "MainActivity";
@@ -31,16 +33,25 @@ public class MainActivity extends Activity {
 
         TextView name = (TextView) findViewById(R.id.stopName);
 
-        api.setMyTaskCompleteListener(new APIInterface.OnTaskComplete() {
-            @Override
-            public void setMyTaskComplete(JSONArray json) {
-                //do something with JSON object
 
-                //try {
-                //    name.setText(json.getString("Name"));
-                //} catch (JSONException e) {
-                //    e.printStackTrace();
-                //}
+        api.setTaskCompleteListener(new APIInterface.OnTaskComplete() {
+            @Override
+            public void setTaskComplete(JSONArray json) {
+                //do something with JSON array
+            }
+        });
+
+
+        api.setParseJSONObjectCompleteListener(new APIInterface.OnParseJSONObjectComplete() {
+            @Override
+            public void setParseJSONObjectComplete(JSONObject jsonObject) {
+                //do something with the json Object
+                try {
+                    String n = jsonObject.getString("Name");
+                    name.setText(n);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
 

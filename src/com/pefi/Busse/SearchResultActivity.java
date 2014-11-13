@@ -39,17 +39,18 @@ public class SearchResultActivity extends Activity {
 
         }
 
-        api.setMyTaskCompleteListener(new APIInterface.OnTaskComplete() {
+        api.setTaskCompleteListener(new APIInterface.OnTaskComplete() {
             @Override
-            public void setMyTaskComplete(JSONArray json) {
+            public void setTaskComplete(JSONArray json) {
 
-                if (json != null && json.length() > 0){
+                if (json != null && json.length() > 0) {
 
                     StringBuilder sb = new StringBuilder();
-                    for (int i = 0; i < json.length(); i++){
+                    for (int i = 0; i < json.length(); i++) {
                         try {
                             JSONObject jo = json.getJSONObject(i);
-                            sb.append(jo.getString("Name") + " (" + jo.getString("District") +  ")\n");
+                            System.out.println(jo.names());
+                            sb.append(jo.getString("Name") + " (" + jo.getString("District") + ")\n");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -57,8 +58,7 @@ public class SearchResultActivity extends Activity {
 
                     places.setText(sb);
                     System.out.println(sb.toString());
-                }
-                else {
+                } else {
                     places.setText("No results");
                 }
 
@@ -69,7 +69,11 @@ public class SearchResultActivity extends Activity {
     }
 
 
-
+    /**
+     * Method for performing the search to the API
+     *
+     * @param query String containing the word to be searched for
+     */
     public void search(String query){
 
         api.execute("Place/GetPlaces/" + query);

@@ -2,12 +2,12 @@ package com.pefi.Busse;
 
 import android.app.Activity;
 import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,7 +16,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.widget.AdapterView.*;
+import static android.widget.AdapterView.OnItemClickListener;
 
 /**
  * Created by pererikfinstad on 11/11/14.
@@ -25,10 +25,8 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
     public static final String TAG = "SearchResultActivity";
 
     APIInterface api;
-    TextView places;
     ListView list;
     List<Stop> rowItem;
-    OnItemClickListener listener;
 
 
 
@@ -67,22 +65,28 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
                             rowItem.add(item);
 
                             list = (ListView) findViewById(R.id.stopList);
+                            Context context = getBaseContext();
                             CustomBaseAdapter adapter = new CustomBaseAdapter(getBaseContext(), rowItem);
                             list.setAdapter(adapter);
-                            //list.setOnItemClickListener();
-
+                            list.setOnItemClickListener(new OnItemClickListener(){
+                                @Override
+                                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                    Stop stop = rowItem.get(i);
+                                    int id = stop.getId();
+                                    Toast.makeText(getBaseContext(), Integer.toString(id) , Toast.LENGTH_SHORT).show();
+                                }
+                            });
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
 
                 } else {
-                    places.setText("No results");
+                    Toast.makeText(getBaseContext(), "Error!", Toast.LENGTH_SHORT).show();
                 }
 
             }
         });
-
     }
 
 
@@ -98,8 +102,7 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
 
 
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Stop stop = rowItem.get(i);
-        Toast.makeText(this, stop.getId(), Toast.LENGTH_SHORT).show();
-    }
-}
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {}
+
+
+}// end SearchResultActivity

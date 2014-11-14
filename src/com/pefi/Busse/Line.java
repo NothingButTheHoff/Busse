@@ -3,17 +3,17 @@ package com.pefi.Busse;
 /**
  * Created by pererikfinstad on 12/11/14.
  */
-public class Lines {
+public class Line {
     public String name;
     public int id, transportation;
 
-    public Lines(String name, int id, int transportation) {
+    public Line(String name, int id, int transportation) {
         this.name = name;
         this.id = id;
         this.transportation = transportation;
     }
 
-    public Lines(){}
+    public Line(){}
 
     public String getName() {
         return name;

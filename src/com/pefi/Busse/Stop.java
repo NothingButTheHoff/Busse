@@ -3,19 +3,18 @@ package com.pefi.Busse;
 /**
  * Created by pererikfinstad on 12/11/14.
  */
-public class Stops {
-    public String name, shortName, district;
+public class Stop {
+    public String name, district;
     public int id, zone;
 
-    public Stops(String name, String shortName, String district, int id, int zone) {
+    public Stop(String name,  String district, int id, int zone) {
         this.name = name;
-        this.shortName = shortName;
         this.district = district;
         this.id = id;
         this.zone = zone;
     }
 
-    public Stops(){}
+    public Stop(){}
 
     public String getName() {
         return name;
@@ -23,14 +22,6 @@ public class Stops {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getShortName() {
-        return shortName;
-    }
-
-    public void setShortName(String shortName) {
-        this.shortName = shortName;
     }
 
     public String getDistrict() {

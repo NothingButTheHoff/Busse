@@ -4,10 +4,10 @@ package com.pefi.Busse;
  * Created by pererikfinstad on 12/11/14.
  */
 public class Line {
-    public String name;
-    public int id, transportation;
+    public String name,transportation;
+    public int id;
 
-    public Line(String name, int id, int transportation) {
+    public Line(String name, int id, String transportation) {
         this.name = name;
         this.id = id;
         this.transportation = transportation;
@@ -31,11 +31,11 @@ public class Line {
         this.id = id;
     }
 
-    public int getTransportation(){
+    public String getTransportation(){
         return transportation;
     }
 
-    public void setTransportation(int transportation){
+    public void setTransportation(String transportation){
         this.transportation = transportation;
     }
 }

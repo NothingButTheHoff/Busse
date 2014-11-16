@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -15,12 +14,12 @@ import java.util.List;
 /**
  * Created by pererikfinstad on 05/10/14.
  */
-public class CustomBaseAdapter extends BaseAdapter {
+public class StopsBaseAdapter extends BaseAdapter {
 
     Context context;
     List<Stop> rowItem;
 
-    CustomBaseAdapter(Context context, List<Stop> rowItem) {
+    StopsBaseAdapter(Context context, List<Stop> rowItem) {
         this.context = context;
         this.rowItem = rowItem;
 
@@ -52,7 +51,6 @@ public class CustomBaseAdapter extends BaseAdapter {
             convertView = mInflater.inflate(R.layout.stop_list_item, null);
         }
 
-        ImageView image = (ImageView) convertView.findViewById(R.id.stopType);
         TextView name  = (TextView) convertView.findViewById(R.id.stopName);
         TextView district = (TextView) convertView.findViewById(R.id.district);
 

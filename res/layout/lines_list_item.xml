@@ -12,20 +12,14 @@
             >
 
         <TextView
-                android:layout_width="250dp"
+                android:layout_width="fill_parent"
                 android:layout_height="50dp"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/stopName"
+                android:id="@+id/lineName"
                 android:gravity="center_vertical"
                 android:paddingLeft="5dp"
                 />
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:id="@+id/district"
-                android:layout_weight="1"
-                />
+
     </LinearLayout>
 </LinearLayout>

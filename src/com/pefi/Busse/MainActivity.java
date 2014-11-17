@@ -1,11 +1,15 @@
 package com.pefi.Busse;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,7 +33,7 @@ public class MainActivity extends Activity {
         checkInternetConnection();
 
         api = new APIInterface();
-        api.execute("Place/GetStop/45?json=true");
+        api.execute("Place/GetStop/45");
 
         TextView name = (TextView) findViewById(R.id.stopName);
 
@@ -79,6 +83,12 @@ public class MainActivity extends Activity {
         return true;
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        checkInternetConnection();
+
+    }
 
     /**
      * Method for checking the internet connection. For debugging only.
@@ -94,8 +104,37 @@ public class MainActivity extends Activity {
         if (networkInfo != null && networkInfo.isConnected()) {
             Log.i(TAG, "Connected to the internet");
         } else {
+            showDialog();
             Log.i(TAG, "Internet is not available");
         }
 
     }
-}
+
+
+
+    public void showDialog(){
+
+        new AlertDialog.Builder(this)
+        .setTitle(getString(R.string.internet_required))
+        .setMessage(getString(R.string.turn_on_internet))
+        .setPositiveButton( getString(R.string.yes), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                startActivity(new Intent(Settings.ACTION_SETTINGS));
+            }
+        })
+        .setNegativeButton(getString(R.string.exit), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        })
+        .show();
+
+    }
+
+
+
+}//end MainActivity
+
+

@@ -58,7 +58,7 @@ public class LinesActivity extends Activity implements OnItemClickListener{
                             JSONObject jo = json.getJSONObject(i);
                             Log.d(TAG, "JSONOBJECT to assign: " + jo.toString());
 
-                            Line item = new Line(jo.getString("Name"), jo.getInt("ID"),jo.getString("Transportation"));
+                            Line item = new Line(jo.getString("Name"), jo.getInt("ID"), jo.getString("Transportation"),jo.getString("LineColour"));
                             rowItem.add(item);
 
                             list = (ListView) findViewById(R.id.linesList);

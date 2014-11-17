@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -43,6 +44,7 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
             String query = intent.getStringExtra(SearchManager.QUERY);
 
             query = query.replaceAll("\\s+","");
+            Log.d(TAG, "Stop to be searched for: " + query);
             search(query);
 
         }
@@ -57,27 +59,32 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
 
                     for (int i = 0; i < json.length(); i++)
                         try {
+
                             JSONObject jo = json.getJSONObject(i);
 
-                            Stop item = new Stop(jo.getString("Name"), jo.getString("District"), jo.getInt("ID"), jo.getInt("Zone"));
-                            rowItem.add(item);
+                            if (jo.getString("PlaceType").equals("Stop") ){
 
-                            list = (ListView) findViewById(R.id.stopList);
-                            StopsBaseAdapter adapter = new StopsBaseAdapter(getBaseContext(), rowItem);
-                            list.setAdapter(adapter);
-                            list.setOnItemClickListener(new OnItemClickListener(){
-                                @Override
-                                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                    Stop stop = rowItem.get(i);
-                                    int id = stop.getId();
+                            Stop item = new Stop(jo.getString("Name"), jo.getString("District"), jo.getInt("ID"));
+                                rowItem.add(item);
 
-                                    Intent intent = new Intent(getBaseContext(), LinesActivity.class);
-                                    intent.putExtra("stopId", id);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(intent);
-                                    Toast.makeText(getBaseContext(), Integer.toString(id) , Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                                list = (ListView) findViewById(R.id.stopList);
+                                StopsBaseAdapter adapter = new StopsBaseAdapter(getBaseContext(), rowItem);
+                                list.setAdapter(adapter);
+                                list.setOnItemClickListener(new OnItemClickListener(){
+                                    @Override
+                                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                        Stop stop = rowItem.get(i);
+                                        int id = stop.getId();
+
+                                        Intent intent = new Intent(getBaseContext(), LinesActivity.class);
+                                        intent.putExtra("stopId", id);
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        startActivity(intent);
+                                        Toast.makeText(getBaseContext(), Integer.toString(id) , Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();

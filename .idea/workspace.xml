@@ -40,8 +40,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6425ede2-23da-4e23-875a-1aac8b7d22c1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pefi/Busse/MainActivity.java" afterPath="$PROJECT_DIR$/src/com/pefi/Busse/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pefi/Busse/Line.java" afterPath="$PROJECT_DIR$/src/com/pefi/Busse/Line.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pefi/Busse/LinesActivity.java" afterPath="$PROJECT_DIR$/src/com/pefi/Busse/LinesActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pefi/Busse/SearchResultActivity.java" afterPath="$PROJECT_DIR$/src/com/pefi/Busse/SearchResultActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pefi/Busse/Stop.java" afterPath="$PROJECT_DIR$/src/com/pefi/Busse/Stop.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Busse.iws" />
@@ -65,20 +67,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.6762114" vertical-offset="0" max-vertical-offset="1935">
-              <caret line="98" column="10" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="10" />
-              <folding>
-                <element signature="e#3874#3898#0" expanded="true" />
-                <element signature="e#4034#4035#0" expanded="true" />
-                <element signature="e#4074#4075#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="APIInterface.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/APIInterface.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -91,21 +79,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="LinesActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/LinesActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="559" max-vertical-offset="1455">
-              <caret line="63" column="75" selection-start-line="63" selection-start-column="75" selection-end-line="63" selection-end-column="75" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="1455">
+              <caret line="65" column="53" selection-start-line="65" selection-start-column="53" selection-end-line="65" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -113,23 +91,38 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StopsBaseAdapter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/StopsBaseAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1095">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LinesBaseAdapter.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="LinesBaseAdapter.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/LinesBaseAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="604" max-vertical-offset="1095">
-              <caret line="59" column="38" selection-start-line="59" selection-start-column="38" selection-end-line="59" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.8017621" vertical-offset="536" max-vertical-offset="1095">
+              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Line.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/Line.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
+              <caret line="42" column="31" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
+              <folding>
+                <element signature="e#734#735#0" expanded="true" />
+                <element signature="e#762#763#0" expanded="true" />
+                <element signature="e#804#805#0" expanded="true" />
+                <element signature="e#838#839#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SearchResultActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/SearchResultActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="821" max-vertical-offset="1830">
+              <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -162,19 +155,19 @@
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/com/pefi/Busse/APIInterface.java" />
         <option value="$PROJECT_DIR$/res/layout/search.xml" />
-        <option value="$PROJECT_DIR$/src/com/pefi/Busse/Stop.java" />
         <option value="$PROJECT_DIR$/src/com/pefi/Busse/CustomBaseAdapter.java" />
         <option value="$PROJECT_DIR$/res/layout/stop_list_item.xml" />
         <option value="$PROJECT_DIR$/src/com/pefi/Busse/StopsBaseAdapter.java" />
-        <option value="$PROJECT_DIR$/src/com/pefi/Busse/Line.java" />
-        <option value="$PROJECT_DIR$/src/com/pefi/Busse/SearchResultActivity.java" />
         <option value="$PROJECT_DIR$/res/layout/lines_list_item.xml" />
-        <option value="$PROJECT_DIR$/src/com/pefi/Busse/LinesBaseAdapter.java" />
         <option value="$PROJECT_DIR$/res/layout/line.xml" />
         <option value="$PROJECT_DIR$/res/layout/lines.xml" />
-        <option value="$PROJECT_DIR$/src/com/pefi/Busse/LinesActivity.java" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/src/com/pefi/Busse/MainActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/pefi/Busse/Stop.java" />
+        <option value="$PROJECT_DIR$/src/com/pefi/Busse/LinesActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/pefi/Busse/Line.java" />
+        <option value="$PROJECT_DIR$/src/com/pefi/Busse/SearchResultActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/pefi/Busse/LinesBaseAdapter.java" />
       </list>
     </option>
   </component>
@@ -593,16 +586,16 @@
       <updated>1415027440545</updated>
       <workItem from="1415027442046" duration="3035000" />
       <workItem from="1415706695258" duration="28984000" />
-      <workItem from="1415890891294" duration="16269000" />
+      <workItem from="1415890891294" duration="22112000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48288000" />
+    <option name="totallyTimeSpent" value="54131000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="874" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32936507" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -620,7 +613,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32936507" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964234" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33068782" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36243385" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36243385" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -782,14 +775,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/Stop.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/lines.xml">
       <provider selected="true" editor-type-id="android-designer">
         <state />
@@ -798,16 +783,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/SearchResultActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="1725">
-          <caret line="34" column="24" selection-start-line="34" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -833,14 +808,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/Line.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19257541" vertical-offset="52" max-vertical-offset="525">
-          <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/lines_list_item.xml">
       <provider selected="true" editor-type-id="android-designer">
         <state />
@@ -852,12 +819,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/LinesActivity.java">
+    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="559" max-vertical-offset="1455">
-          <caret line="63" column="75" selection-start-line="63" selection-start-column="75" selection-end-line="63" selection-end-column="75" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.668956" vertical-offset="0" max-vertical-offset="1935">
+          <caret line="98" column="10" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="10" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#3874#3898#0" expanded="true" />
+            <element signature="e#4034#4035#0" expanded="true" />
+            <element signature="e#4074#4075#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -872,10 +849,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/Line.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
+          <caret line="42" column="31" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
+          <folding>
+            <element signature="e#734#735#0" expanded="true" />
+            <element signature="e#762#763#0" expanded="true" />
+            <element signature="e#804#805#0" expanded="true" />
+            <element signature="e#838#839#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/Stop.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.66079295" vertical-offset="0" max-vertical-offset="690">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/StopsBaseAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1095">
+        <state vertical-scroll-proportion="0.561674" vertical-offset="0" max-vertical-offset="1095">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/SearchResultActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="821" max-vertical-offset="1830">
+          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/LinesActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="1455">
+          <caret line="65" column="53" selection-start-line="65" selection-start-column="53" selection-end-line="65" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -884,30 +902,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/LinesBaseAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="604" max-vertical-offset="1095">
-          <caret line="59" column="38" selection-start-line="59" selection-start-column="38" selection-end-line="59" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.8017621" vertical-offset="536" max-vertical-offset="1095">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.6762114" vertical-offset="0" max-vertical-offset="1935">
-          <caret line="98" column="10" selection-start-line="98" selection-start-column="10" selection-end-line="98" selection-end-column="10" />
-          <folding>
-            <element signature="e#3874#3898#0" expanded="true" />
-            <element signature="e#4034#4035#0" expanded="true" />
-            <element signature="e#4074#4075#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -14,6 +14,12 @@ public class Stop {
         this.zone = zone;
     }
 
+    public Stop(String name,  String district, int id) {
+        this.name = name;
+        this.district = district;
+        this.id = id;
+    }
+
     public Stop(){}
 
     public String getName() {

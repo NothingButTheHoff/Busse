@@ -1,5 +1,6 @@
 package com.pefi.Busse;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -35,6 +36,8 @@ public class LinesActivity extends Activity implements OnItemClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lines);
 
+        ActionBar actionBar = getActionBar();
+        actionBar.setIcon(null);
 
         api = new APIInterface();
 

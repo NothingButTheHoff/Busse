@@ -35,7 +35,6 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
 
-
         api = new APIInterface();
 
         // Get the intent, verify the action and get the query
@@ -78,7 +77,7 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
 
                                         Intent intent = new Intent(getBaseContext(), LinesActivity.class);
                                         intent.putExtra("stopId", id);
-                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(intent);
                                         Toast.makeText(getBaseContext(), Integer.toString(id) , Toast.LENGTH_SHORT).show();
                                     }

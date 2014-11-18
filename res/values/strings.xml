@@ -11,4 +11,6 @@
     <string name="delete">Slett</string>
     <string name="add">Legg til</string>
     <string name="exit">Avslutt</string>
+    <string name="lines">Linjer</string>
+    <string name="stops">Stoppesteder</string>
 </resources>

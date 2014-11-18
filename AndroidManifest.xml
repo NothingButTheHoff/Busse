@@ -36,6 +36,7 @@
         <activity android:name=".LinesActivity"
                   android:icon="@android:color/transparent"
                   android:label="@string/lines"/>
+        <activity android:name=".StopsByLineActivity"/>
 
     </application>
 </manifest>

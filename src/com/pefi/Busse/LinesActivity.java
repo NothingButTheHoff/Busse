@@ -72,6 +72,9 @@ public class LinesActivity extends Activity implements OnItemClickListener{
                                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                                     //do something
                                     Toast.makeText(getBaseContext(), "YEah", Toast.LENGTH_LONG).show();
+                                    Intent intent1 = new Intent(getBaseContext(), StopsByLineActivity.class);
+                                    intent1.putExtra("lineID", rowItem.get(i).getId() );
+                                    startActivity(intent1);
                                 }
                             });
 
@@ -80,7 +83,7 @@ public class LinesActivity extends Activity implements OnItemClickListener{
                         }
 
                 } else {
-                    Toast.makeText(getBaseContext(), "Error!", Toast.LENGTH_SHORT).show();
+
                 }
 
             }

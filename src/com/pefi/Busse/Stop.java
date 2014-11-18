@@ -20,7 +20,9 @@ public class Stop {
         this.id = id;
     }
 
-    public Stop(){}
+    public Stop(String name){
+        this.name = name;
+    }
 
     public String getName() {
         return name;

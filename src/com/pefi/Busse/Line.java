@@ -14,7 +14,9 @@ public class Line {
         this.color = color;
     }
 
-    public Line(){}
+    public Line(String name){
+        this.name = name;
+    }
 
     public String getName() {
         return name;

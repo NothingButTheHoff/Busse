@@ -13,4 +13,5 @@
     <string name="exit">Avslutt</string>
     <string name="lines">Linjer</string>
     <string name="stops">Stoppesteder</string>
+    <string name="no_hits">Ingen treff...</string>
 </resources>

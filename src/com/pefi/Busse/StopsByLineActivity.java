@@ -1,7 +1,6 @@
 package com.pefi.Busse;
 
 import android.app.Activity;
-import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,15 +15,14 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.widget.AdapterView.OnItemClickListener;
-
 /**
- * Created by pererikfinstad on 11/11/14.
+ * Created by pererikfinstad on 18/11/14.
  */
-public class SearchResultActivity extends Activity implements OnItemClickListener {
-    public static final String TAG = "SearchResultActivity";
+public class StopsByLineActivity extends Activity implements AdapterView.OnItemClickListener{
+    public static final String TAG = "StopsByLineActivity";
 
     APIInterface api;
+    int id;
     ListView list;
     List<Stop> rowItem;
 
@@ -35,19 +33,13 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
 
+        Intent intent = getIntent();
+        id = intent.getIntExtra("lineID", -1);
+        Toast.makeText(getBaseContext(), Integer.toString(id), Toast.LENGTH_SHORT).show();
+
         api = new APIInterface();
 
-        // Get the intent, verify the action and get the query
-        Intent intent = getIntent();
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-
-            query = query.replaceAll("\\s+","");
-            Log.d(TAG, "Stop to be searched for: " + query);
-            search(query);
-
-        }
-
+        api.execute("Line/GetStopsByLineID/" + id);
         api.setTaskCompleteListener(new APIInterface.OnTaskComplete() {
             @Override
             public void setTaskComplete(JSONArray json) {
@@ -61,7 +53,7 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
 
                             JSONObject jo = json.getJSONObject(i);
 
-                            if (jo.getString("PlaceType").equals("Stop") ){
+                            //if (jo.getString("PlaceType").equals("Stop") ){
 
                                 Stop item = new Stop(jo.getString("Name"), jo.getString("District"), jo.getInt("ID"));
                                 rowItem.add(item);
@@ -69,20 +61,15 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
                                 list = (ListView) findViewById(R.id.stopList);
                                 StopsBaseAdapter adapter = new StopsBaseAdapter(getBaseContext(), rowItem);
                                 list.setAdapter(adapter);
-                                list.setOnItemClickListener(new OnItemClickListener(){
+                                list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
                                     @Override
                                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                        Stop stop = rowItem.get(i);
-                                        int id = stop.getId();
-
-                                        Intent intent = new Intent(getBaseContext(), LinesActivity.class);
-                                        intent.putExtra("stopId", id);
-                                        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                        startActivity(intent);
+                                        //save to shared preferenses
                                         Toast.makeText(getBaseContext(), Integer.toString(id) , Toast.LENGTH_SHORT).show();
                                     }
                                 });
-                            }
+                            //}
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -103,20 +90,8 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
         });
     }
 
-
-    /**
-     * Method for performing the search to the API
-     *
-     * @param query String containing the word to be searched for
-     */
-    public void search(String query){
-
-        api.execute("Place/GetPlaces/" + query);
-    }
-
-
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {}
 
 
-}// end SearchResultActivity
+}//end StopsByLineActivity

@@ -30,6 +30,8 @@ public class LinesActivity extends Activity implements OnItemClickListener{
 
     ListView list;
     List<Line> rowItem;
+    List<Line> rows;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,7 +47,7 @@ public class LinesActivity extends Activity implements OnItemClickListener{
         id = intent.getIntExtra("stopId", -1);
         Toast.makeText(getBaseContext(), Integer.toString(id), Toast.LENGTH_SHORT).show();
 
-        api.execute("Line/GetLinesByStopID/" + id +"?json=true");
+        api.execute("Stopvisit/GetDepartures/" + id +"?json=true");
 
 
         api.setTaskCompleteListener(new APIInterface.OnTaskComplete() {
@@ -56,13 +58,21 @@ public class LinesActivity extends Activity implements OnItemClickListener{
 
                     rowItem = new ArrayList<Line>();
 
-                    for (int i = 0; i < json.length(); i++)
+                    for (int i = 0; i < json.length(); i++) {
+                        System.out.println("Antall kall: " + Integer.toString(i));
                         try {
                             JSONObject jo = json.getJSONObject(i);
+
                             Log.d(TAG, "JSONOBJECT to assign: " + jo.toString());
 
-                            Line item = new Line(jo.getString("Name"), jo.getInt("ID"), jo.getString("Transportation"),jo.getString("LineColour"));
-                            rowItem.add(item);
+                            JSONObject j = jo.getJSONObject("MonitoredVehicleJourney");
+
+                            Line item = new Line(j.getString("LineRef"), j.getString("DestinationName"));
+
+                            if (! rowItem.contains(item)){
+                                rowItem.add(item);
+                            }
+                           
 
                             list = (ListView) findViewById(R.id.linesList);
                             LinesBaseAdapter adapter = new LinesBaseAdapter(getBaseContext(), rowItem);
@@ -78,12 +88,14 @@ public class LinesActivity extends Activity implements OnItemClickListener{
                                 }
                             });
 
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                    }
 
                 } else {
-
+                    System.out.println("No data from the API");
                 }
 
             }
@@ -93,6 +105,36 @@ public class LinesActivity extends Activity implements OnItemClickListener{
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {}
 
+
+
+    public static <Line> boolean containsInstance(List<Line> list, Class<? extends Line> clazz) {
+        for (Line line : list) {
+            if (clazz.isInstance(line)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public List<Line> sortItems(List<Line> rows){
+        for (int i = 0; i < rows.size(); i ++){
+            if (rowItem.size() < 1){
+                rowItem.add(rows.get(i));
+            }
+            else{
+                for (int j = 0; j < rowItem.size(); j ++){
+                    if (rowItem.get(j).getName().equals(rows.get(i).getName())){
+                        break;
+                    }
+                    else rowItem.add(rows.get(i));
+                }
+
+            }
+        }
+
+        return rowItem;
+    }
 
 
 } // end LinesActivity

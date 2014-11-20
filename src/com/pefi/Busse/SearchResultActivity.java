@@ -48,6 +48,27 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
 
         }
 
+        setListener();
+    }
+
+
+    /**
+     * Method for performing the search to the API
+     *
+     * @param query String containing the word to be searched for
+     */
+    public void search(String query){
+
+        api.execute("Place/GetPlaces/" + query);
+    }
+
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {}
+
+
+
+    private void setListener(){
         api.setTaskCompleteListener(new APIInterface.OnTaskComplete() {
             @Override
             public void setTaskComplete(JSONArray json) {
@@ -101,22 +122,7 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
 
             }
         });
-    }
-
-
-    /**
-     * Method for performing the search to the API
-     *
-     * @param query String containing the word to be searched for
-     */
-    public void search(String query){
-
-        api.execute("Place/GetPlaces/" + query);
-    }
-
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {}
+    } // end setListener
 
 
 }// end SearchResultActivity

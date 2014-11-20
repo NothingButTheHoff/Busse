@@ -40,6 +40,17 @@ public class StopsByLineActivity extends Activity implements AdapterView.OnItemC
         api = new APIInterface();
 
         api.execute("Line/GetStopsByLineID/" + id);
+
+
+        setListener();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {}
+
+
+
+    private void setListener(){
         api.setTaskCompleteListener(new APIInterface.OnTaskComplete() {
             @Override
             public void setTaskComplete(JSONArray json) {
@@ -55,19 +66,19 @@ public class StopsByLineActivity extends Activity implements AdapterView.OnItemC
 
                             //if (jo.getString("PlaceType").equals("Stop") ){
 
-                                Stop item = new Stop(jo.getString("Name"), jo.getString("District"), jo.getInt("ID"));
-                                rowItem.add(item);
+                            Stop item = new Stop(jo.getString("Name"), jo.getString("District"), jo.getInt("ID"));
+                            rowItem.add(item);
 
-                                list = (ListView) findViewById(R.id.stopList);
-                                StopsBaseAdapter adapter = new StopsBaseAdapter(getBaseContext(), rowItem);
-                                list.setAdapter(adapter);
-                                list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-                                    @Override
-                                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                        //save to shared preferenses
-                                        Toast.makeText(getBaseContext(), Integer.toString(id) , Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+                            list = (ListView) findViewById(R.id.stopList);
+                            StopsBaseAdapter adapter = new StopsBaseAdapter(getBaseContext(), rowItem);
+                            list.setAdapter(adapter);
+                            list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                                @Override
+                                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                    //save to shared preferenses
+                                    Toast.makeText(getBaseContext(), Integer.toString(id) , Toast.LENGTH_SHORT).show();
+                                }
+                            });
                             //}
 
                         } catch (JSONException e) {
@@ -88,10 +99,8 @@ public class StopsByLineActivity extends Activity implements AdapterView.OnItemC
 
             }
         });
-    }
+    }//end setListener
 
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {}
 
 
 }//end StopsByLineActivity

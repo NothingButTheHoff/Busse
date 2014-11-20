@@ -64,7 +64,7 @@ public class LinesBaseAdapter extends BaseAdapter {
 
         name.setText(row_pos.getName());
         dest.setText(row_pos.getDestination());
-        bullet.setText(Html.fromHtml("&#9608"));
+        bullet.setText(Html.fromHtml("&#3663"));
         //
         String hex = "#" + row_pos.getColor();
         int i = Color.parseColor(hex);

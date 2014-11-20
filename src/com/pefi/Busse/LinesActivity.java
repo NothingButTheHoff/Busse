@@ -14,6 +14,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static android.widget.AdapterView.OnItemClickListener;
@@ -77,8 +79,9 @@ public class LinesActivity extends Activity implements OnItemClickListener{
                             Log.d(TAG, "JSONOBJECT to assign: " + jo.toString());
 
                             JSONObject j = jo.getJSONObject("MonitoredVehicleJourney");
-
-                            Line item = new Line(j.getString("LineRef"), j.getString("DestinationName"));
+                            JSONObject j2 = jo.getJSONObject("Extensions");
+                            System.out.println(jo.names());
+                            Line item = new Line(j.getString("LineRef"), j.getString("DestinationName"), j2.getString("LineColour"));
 
                             if (! rowItem.contains(item)){
                                 rowItem.add(item);
@@ -89,6 +92,14 @@ public class LinesActivity extends Activity implements OnItemClickListener{
                         }
                     }
 
+
+
+                    Collections.sort(rowItem, new Comparator<Line>() {
+                        @Override public int compare(Line l1, Line l2) {
+                            return Integer.parseInt(l1.getName()) - Integer.parseInt(l2.getName()); // Ascending
+                        }
+
+                    });
                     //set the adapter
                     list = (ListView) findViewById(R.id.linesList);
                     LinesBaseAdapter adapter = new LinesBaseAdapter(getBaseContext(), rowItem);
@@ -111,6 +122,5 @@ public class LinesActivity extends Activity implements OnItemClickListener{
             }
         });
     }//end setListener
-
 
 } // end LinesActivity

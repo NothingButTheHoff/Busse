@@ -3,6 +3,7 @@ package com.pefi.Busse;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,12 +63,12 @@ public class LinesBaseAdapter extends BaseAdapter {
 
         name.setText(row_pos.getName());
         dest.setText(row_pos.getDestination());
-        //bullet.setText(Html.fromHtml("&#9608"));
+        //name.setText(Html.fromHtml("&#9608"));
         //
-        //String hex = "#" + row_pos.getColor();
-        //int i = Color.parseColor(hex);
-        //
-        //name.setTextColor(i);
+        String hex = "#" + row_pos.getColor();
+        int i = Color.parseColor(hex);
+
+        name.setTextColor(i);
 
         return convertView;
 

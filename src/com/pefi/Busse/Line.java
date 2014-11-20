@@ -16,6 +16,12 @@ public class Line {
         this.color = color;
     }
 
+    public Line(String lineNo, String destination, String color) {
+        this.lineNo = lineNo;
+        this.destination = destination;
+        this.color = color;
+    }
+
     public Line(String lineNo, String destination){
         this.lineNo = lineNo;
         this.destination = destination;

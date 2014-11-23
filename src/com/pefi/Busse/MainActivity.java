@@ -13,17 +13,33 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MainActivity extends Activity {
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+import static android.widget.AdapterView.OnItemClickListener;
+
+
+public class MainActivity extends Activity implements OnItemClickListener{
     private final static String TAG = "MainActivity";
 
     APIInterface api;
 
+    int stopId, lineNo;
+    String destination;
+    private List<Favourite> rowItem;
+    private ListView list;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,8 +48,20 @@ public class MainActivity extends Activity {
 
         checkInternetConnection();
 
+
+        //assign values for the query
+        stopId = 3012135;
+        lineNo = 30;
+        destination = "Bygdøy";
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(Integer.toString(stopId));
+        sb.append("-" + Integer.toString(lineNo));
+        sb.append("-" + destination);
+        Log.d(TAG, String.valueOf(sb));
+
         api = new APIInterface();
-        api.execute("Place/GetStop/45");
+        api.execute("Favourites/GetFavourites?favouritesRequest=" + sb);
 
         TextView name = (TextView) findViewById(R.id.stopName);
 
@@ -41,23 +69,54 @@ public class MainActivity extends Activity {
         api.setTaskCompleteListener(new APIInterface.OnTaskComplete() {
             @Override
             public void setTaskComplete(JSONArray json) {
-                //do something with JSON array
-            }
-        });
+                if (json != null && json.length() > 0) {
+                    rowItem = new ArrayList<Favourite>();
+                    for (int i = 0; i < json.length(); i++)
+                        try {
+                            JSONObject jo = json.getJSONObject(i);
+
+                            String lineName = jo.getJSONArray("MonitoredStopVisits").getJSONObject(0).getJSONObject("MonitoredVehicleJourney").getString("PublishedLineName") + " " + jo.getString("Destination");
+                            System.out.println(jo.getJSONArray("MonitoredStopVisits").getJSONObject(0).getJSONObject("MonitoredVehicleJourney").getJSONObject("MonitoredCall").getString("ExpectedArrivalTime"));
+                            String firstArrivaltime  = jo.getJSONArray("MonitoredStopVisits").getJSONObject(0).getJSONObject("MonitoredVehicleJourney").getJSONObject("MonitoredCall").getString("ExpectedArrivalTime");
+                            String secondArrivaltime = jo.getJSONArray("MonitoredStopVisits").getJSONObject(1).getJSONObject("MonitoredVehicleJourney").getJSONObject("MonitoredCall").getString("ExpectedArrivalTime");
+                            String thirdArrivaltime  = jo.getJSONArray("MonitoredStopVisits").getJSONObject(2).getJSONObject("MonitoredVehicleJourney").getJSONObject("MonitoredCall").getString("ExpectedArrivalTime");
+                            name.setText(formatDate(firstArrivaltime));
+
+                            Favourite fav = new Favourite(lineName, formatDate(firstArrivaltime), formatDate(secondArrivaltime),formatDate(thirdArrivaltime));
 
 
-        api.setParseJSONObjectCompleteListener(new APIInterface.OnParseJSONObjectComplete() {
-            @Override
-            public void setParseJSONObjectComplete(JSONObject jsonObject) {
-                //do something with the json Object
-                try {
-                    String n = jsonObject.getString("Name");
-                    name.setText(n);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                            rowItem.add(fav);
+                            rowItem.add(fav);
+                            list = (ListView) findViewById(R.id.favouriteList);
+                            FavouritesBaseAdapter adapter = new FavouritesBaseAdapter(getBaseContext(), rowItem);
+                            list.setAdapter(adapter);
+                            list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                                @Override
+                                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                    //do something on click
+                                }
+                            });
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                 }
             }
         });
+
+
+        //api.setParseJSONObjectCompleteListener(new APIInterface.OnParseJSONObjectComplete() {
+        //    @Override
+        //    public void setParseJSONObjectComplete(JSONObject jsonObject) {
+        //        //do something with the json Object
+        //        try {
+        //            String n = jsonObject.getString("Destination");
+        //            //name.setText(n);
+        //        } catch (JSONException e) {
+        //            e.printStackTrace();
+        //        }
+        //    }
+        //});
 
     }
 
@@ -99,8 +158,9 @@ public class MainActivity extends Activity {
     public void checkInternetConnection(){
 
         ConnectivityManager connMgr = (ConnectivityManager)
-                getSystemService(Context.CONNECTIVITY_SERVICE);
+        getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
         if (networkInfo != null && networkInfo.isConnected()) {
             Log.i(TAG, "Connected to the internet");
         } else {
@@ -133,6 +193,23 @@ public class MainActivity extends Activity {
 
     }
 
+    public static String formatDate(String dateString) {
+        Date date;
+        String formattedDate = "";
+        try {
+            date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).parse(dateString);
+            formattedDate = new SimpleDateFormat("HH:mm",Locale.getDefault()).format(date);
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return formattedDate;
+    }
+
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {}
 
 
 }//end MainActivity

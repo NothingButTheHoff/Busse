@@ -10,7 +10,8 @@
     <uses-sdk android:minSdkVersion="19"/>
     <application
             android:label="@string/app_name"
-            android:icon="@drawable/ic_launcher" >
+            android:icon="@drawable/ic_launcher"
+            android:theme="@android:style/Theme.Holo.Light.DarkActionBar">
 
         <activity
                 android:name="MainActivity"
@@ -36,7 +37,7 @@
         <activity android:name=".LinesActivity"
                   android:icon="@android:color/transparent"
                   android:label="@string/lines"/>
-        <activity android:name=".StopsByLineActivity"/>
-
+        <activity android:name=".StopsByLineActivity"
+                  android:icon="@android:color/transparent"/>
     </application>
 </manifest>

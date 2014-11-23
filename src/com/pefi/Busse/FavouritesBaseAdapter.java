@@ -3,8 +3,6 @@ package com.pefi.Busse;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,18 +14,17 @@ import java.util.List;
 /**
  * Created by pererikfinstad on 05/10/14.
  */
-public class LinesBaseAdapter extends BaseAdapter {
+public class FavouritesBaseAdapter extends BaseAdapter {
     public static final String TAG = "LinesBaseAdapter";
 
     Context context;
-    List<Line> rowItem;
+    List<Favourite> rowItem;
 
-    LinesBaseAdapter(Context context, List<Line> rowItem) {
+    FavouritesBaseAdapter(Context context, List<Favourite> rowItem) {
         this.context = context;
         this.rowItem = rowItem;
 
     }
-
 
 
     @Override
@@ -53,23 +50,20 @@ public class LinesBaseAdapter extends BaseAdapter {
 
         if (convertView == null) {
             LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            convertView = mInflater.inflate(R.layout.lines_list_item, null);
+            convertView = mInflater.inflate(R.layout.favourites_list_item, null);
         }
 
-        TextView name   = (TextView) convertView.findViewById(R.id.lineNo);
-        TextView dest   = (TextView) convertView.findViewById(R.id.destination);
-        TextView bullet = (TextView) convertView.findViewById(R.id.bullet);
+        TextView lineName = (TextView) convertView.findViewById(R.id.lineName);
+        TextView first    = (TextView) convertView.findViewById(R.id.firstArrival);
+        TextView second   = (TextView) convertView.findViewById(R.id.secondArrival);
+        TextView third    = (TextView) convertView.findViewById(R.id.thirdArrival);
 
-        Line row_pos = rowItem.get(position);
+        Favourite row_pos = rowItem.get(position);
 
-        name.setText(row_pos.getName());
-        dest.setText(row_pos.getDestination());
-        bullet.setText(Html.fromHtml("&#3663"));
-        //
-        String hex = "#" + row_pos.getColor();
-        int i = Color.parseColor(hex);
-
-        bullet.setTextColor(i);
+        lineName.setText(row_pos.getLineName());
+        first.setText(row_pos.getFirstArrival());
+        second.setText(row_pos.getSecondArrival());
+        third.setText(row_pos.getThirdArrival());
 
         return convertView;
 

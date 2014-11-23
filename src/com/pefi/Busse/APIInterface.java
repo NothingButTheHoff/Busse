@@ -35,34 +35,13 @@ public class APIInterface extends AsyncTask<String, String, String> {
 
 
 
-    //Interface for JSON Arrays
-
-    public interface OnTaskComplete {
-        public void setTaskComplete(JSONArray jsonArray);
-    }
-
-    public void setTaskCompleteListener(OnTaskComplete onTaskComplete) {
-
-        this.onTaskComplete = onTaskComplete;
-    }
-
-   // Interface for JSON Objects
-
-    public interface OnParseJSONObjectComplete {
-        public void setParseJSONObjectComplete(JSONObject jsonObject);
-    }
-
-    public void setParseJSONObjectCompleteListener(OnParseJSONObjectComplete onParseJSONObjectComplete){
-        this.onParseJSONObjectComplete = onParseJSONObjectComplete;
-    }
-
-
     @Override
     protected String doInBackground(String... strings) {
 
         String urlString = strings[0]; // URL to call
 
         String result = "Success!";
+        int response = -1;
 
         // GET
         try {
@@ -73,8 +52,10 @@ public class APIInterface extends AsyncTask<String, String, String> {
 
             try {
                 HttpResponse httpresponse = httpclient.execute(get);
+                response = httpresponse.getStatusLine().getStatusCode();
                 HttpEntity httpentity = httpresponse.getEntity();
                 is = httpentity.getContent();
+
 
             } catch (ClientProtocolException e) {
                 e.printStackTrace();
@@ -95,6 +76,7 @@ public class APIInterface extends AsyncTask<String, String, String> {
             jsonObject = parseJSONObject(jsonString);
         }
 
+        Log.i(TAG, "HTTP Response Code: " + response);
         return result;
 
     }
@@ -169,7 +151,24 @@ public class APIInterface extends AsyncTask<String, String, String> {
 
     }
 
+    //Interface for JSON Arrays
+    public interface OnTaskComplete {
+        public void setTaskComplete(JSONArray jsonArray);
+    }
 
+    public void setTaskCompleteListener(OnTaskComplete onTaskComplete) {
+
+        this.onTaskComplete = onTaskComplete;
+    }
+
+    // Interface for JSON Objects
+    public interface OnParseJSONObjectComplete {
+        public void setParseJSONObjectComplete(JSONObject jsonObject);
+    }
+
+    public void setParseJSONObjectCompleteListener(OnParseJSONObjectComplete onParseJSONObjectComplete){
+        this.onParseJSONObjectComplete = onParseJSONObjectComplete;
+    }
 
 
 

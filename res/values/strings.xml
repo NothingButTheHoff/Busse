@@ -14,4 +14,6 @@
     <string name="lines">Linjer</string>
     <string name="stops">Stoppesteder</string>
     <string name="no_hits">Ingen treff...</string>
+    <string name="update">Oppdater</string>
+    <string name="last_updated">Sist oppdatert</string>
 </resources>

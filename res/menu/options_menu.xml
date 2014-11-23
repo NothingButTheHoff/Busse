@@ -6,6 +6,11 @@
           android:showAsAction="collapseActionView|ifRoom"
           android:actionViewClass="android.widget.SearchView" />
     <item android:id="@+id/refresh"
+          android:showAsAction="ifRoom"
+          android:title="@string/update"
+          android:icon="@drawable/ic_action_refresh"/>
+    <item android:id="@+id/exit"
+          android:icon="@drawable/ic_action_refresh"
           android:title="@string/exit"
           android:showAsAction="never"/>
 

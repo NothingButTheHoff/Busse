@@ -22,12 +22,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
 import static android.widget.AdapterView.OnItemClickListener;
 
 
@@ -61,9 +63,13 @@ public class MainActivity extends Activity implements OnItemClickListener{
         Log.d(TAG, String.valueOf(sb));
 
         api = new APIInterface();
-        api.execute("Favourites/GetFavourites?favouritesRequest=" + sb);
+        api.execute("Favourites/GetFavourites?favouritesRequest=" + sb + ",3012135-51-Maridalen");
+        //api.execute("Favourites/GetFavourites?favouritesRequest=3012135-51-Maridalen");
 
-        TextView name = (TextView) findViewById(R.id.stopName);
+        long time = System.currentTimeMillis();
+
+        TextView name = (TextView) findViewById(R.id.updated);
+        name.setText(getString(R.string.last_updated) + " " + convertTime(time));
 
 
         api.setTaskCompleteListener(new APIInterface.OnTaskComplete() {
@@ -80,13 +86,12 @@ public class MainActivity extends Activity implements OnItemClickListener{
                             String firstArrivaltime  = jo.getJSONArray("MonitoredStopVisits").getJSONObject(0).getJSONObject("MonitoredVehicleJourney").getJSONObject("MonitoredCall").getString("ExpectedArrivalTime");
                             String secondArrivaltime = jo.getJSONArray("MonitoredStopVisits").getJSONObject(1).getJSONObject("MonitoredVehicleJourney").getJSONObject("MonitoredCall").getString("ExpectedArrivalTime");
                             String thirdArrivaltime  = jo.getJSONArray("MonitoredStopVisits").getJSONObject(2).getJSONObject("MonitoredVehicleJourney").getJSONObject("MonitoredCall").getString("ExpectedArrivalTime");
-                            name.setText(formatDate(firstArrivaltime));
 
                             Favourite fav = new Favourite(lineName, formatDate(firstArrivaltime), formatDate(secondArrivaltime),formatDate(thirdArrivaltime));
 
 
                             rowItem.add(fav);
-                            rowItem.add(fav);
+                            //rowItem.add(fav);
                             list = (ListView) findViewById(R.id.favouriteList);
                             FavouritesBaseAdapter adapter = new FavouritesBaseAdapter(getBaseContext(), rowItem);
                             list.setAdapter(adapter);
@@ -200,13 +205,18 @@ public class MainActivity extends Activity implements OnItemClickListener{
             date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).parse(dateString);
             formattedDate = new SimpleDateFormat("HH:mm",Locale.getDefault()).format(date);
         } catch (ParseException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
         return formattedDate;
     }
 
+    public String convertTime(long time){
+        Date date = new Date(time);
+        Format format = new SimpleDateFormat("HH:mm:ss");
+
+        return format.format(date);
+    }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {}

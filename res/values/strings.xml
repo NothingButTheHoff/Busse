@@ -8,6 +8,8 @@
     <string name="yes">Ja</string>
     <string name="no">Nei</string>
     <string name="delete_fav">Slette fra favoritter?</string>
+    <string name="was_deleted">ble slettet</string>
+    <string name="could_not_delete">Kunne ikke slette</string>
 
     <string name="delete">Slett</string>
     <string name="add">Legg til</string>

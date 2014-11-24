@@ -17,11 +17,12 @@ public class Favourite {
 
     }
 
-    public Favourite(String lineName, String firstArrival, String secondArrival, String thirdArrival) {
+    public Favourite(int id,String lineName, String firstArrival, String secondArrival, String thirdArrival) {
         this.lineName      = lineName;
         this.thirdArrival  = thirdArrival;
         this.secondArrival = secondArrival;
         this.firstArrival  = firstArrival;
+        this.id            = id;
     }
 
     public Favourite(){

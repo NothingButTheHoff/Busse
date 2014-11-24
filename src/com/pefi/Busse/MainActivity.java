@@ -13,6 +13,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
 import org.json.JSONArray;
@@ -37,6 +38,8 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
 
     APIInterface api;
 
+    String firstArrivaltime, secondArrivaltime, thirdArrivaltime;
+
 
     private List<Favourite> rowItem, favourites;
     private ListView list;
@@ -52,11 +55,13 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
 
         DBHandler db = new DBHandler(this);
 
-        //db.insertFavourite(new Favourite("3012135", "30", "Bygdøy", 2));
-
+        //db.deleteAllFavourites();
         favourites = db.getAllFavourites();
+        for (Favourite f : favourites){
+            System.out.println("Id: " + f.getId());
+            System.out.println(f.getDestination());
+        }
 
-        System.out.println(favourites);
         if (favourites.size() > 0){
             String favoriteStops = buildString(favourites);
             Log.d(TAG, favoriteStops);
@@ -90,12 +95,31 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
                             JSONObject jo = json.getJSONObject(i);
 
                             String lineName = jo.getJSONArray("MonitoredStopVisits").getJSONObject(0).getJSONObject("MonitoredVehicleJourney").getString("PublishedLineName") + " " + jo.getString("Destination");
-                            System.out.println(jo.getJSONArray("MonitoredStopVisits").getJSONObject(0).getJSONObject("MonitoredVehicleJourney").getJSONObject("MonitoredCall").getString("ExpectedArrivalTime"));
-                            String firstArrivaltime  = jo.getJSONArray("MonitoredStopVisits").getJSONObject(0).getJSONObject("MonitoredVehicleJourney").getJSONObject("MonitoredCall").getString("ExpectedArrivalTime");
-                            String secondArrivaltime = jo.getJSONArray("MonitoredStopVisits").getJSONObject(1).getJSONObject("MonitoredVehicleJourney").getJSONObject("MonitoredCall").getString("ExpectedArrivalTime");
-                            String thirdArrivaltime  = jo.getJSONArray("MonitoredStopVisits").getJSONObject(2).getJSONObject("MonitoredVehicleJourney").getJSONObject("MonitoredCall").getString("ExpectedArrivalTime");
+                            try{
+                                firstArrivaltime = jo.getJSONArray("MonitoredStopVisits").getJSONObject(0).getJSONObject("MonitoredVehicleJourney").getJSONObject("MonitoredCall").getString("ExpectedArrivalTime");
+                                firstArrivaltime = formatDate(firstArrivaltime);
+                            }
+                            catch (JSONException e){
+                                firstArrivaltime = "n/a";
+                                e.getMessage();
+                            }
+                            try{
+                                secondArrivaltime = jo.getJSONArray("MonitoredStopVisits").getJSONObject(1).getJSONObject("MonitoredVehicleJourney").getJSONObject("MonitoredCall").getString("ExpectedArrivalTime");
+                                secondArrivaltime = formatDate(secondArrivaltime);
+                            }
+                            catch (JSONException e){
+                                secondArrivaltime = "n/a";
+                            }
+                            try{
+                                thirdArrivaltime  = jo.getJSONArray("MonitoredStopVisits").getJSONObject(2).getJSONObject("MonitoredVehicleJourney").getJSONObject("MonitoredCall").getString("ExpectedArrivalTime");
+                                thirdArrivaltime = formatDate(thirdArrivaltime);
+                            }
+                            catch (JSONException e){
+                                thirdArrivaltime = "n/a";
+                                e.getMessage();
+                            }
 
-                            Favourite fav = new Favourite(lineName, formatDate(firstArrivaltime), formatDate(secondArrivaltime),formatDate(thirdArrivaltime));
+                            Favourite fav = new Favourite(favourites.get(i).getId(), lineName, firstArrivaltime, secondArrivaltime, thirdArrivaltime);
 
 
                             rowItem.add(fav);
@@ -103,7 +127,7 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
                             list = (ListView) findViewById(R.id.favouriteList);
                             FavouritesBaseAdapter adapter = new FavouritesBaseAdapter(getBaseContext(), rowItem);
                             list.setAdapter(adapter);
-                            list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
+                            list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                                 @Override
                                 public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
 
@@ -214,11 +238,18 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
         new AlertDialog.Builder(this)
                 .setTitle(f.getLineName())
                 .setMessage(getString(R.string.delete_fav))
-                .setPositiveButton( getString(R.string.yes), new DialogInterface.OnClickListener() {
+                .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(getBaseContext(), "JA", Toast.LENGTH_SHORT).show();
-                        //startActivity(new Intent(Settings.ACTION_SETTINGS));
+                        if (deleteFavourite(f.getId())) {
+                            Toast.makeText(getBaseContext(), f.getLineName() + " " + getString(R.string.was_deleted), Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(getBaseContext(), getString(R.string.could_not_delete) + " " + f.getLineName(), Toast.LENGTH_SHORT).show();
+                        }
+
                     }
                 })
                 .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
@@ -279,6 +310,39 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
     public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
         return false;
     }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent intent;
+
+        switch (item.getItemId()){
+            case R.id.exit:
+                finish();
+                return true;
+            case R.id.refresh:
+
+                intent = new Intent(getBaseContext(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+    public boolean deleteFavourite(int i){
+        DBHandler db = new DBHandler(this);
+        if (db.deleteFavourite(i)){
+            return true;
+        }
+        return false;
+    }
+
+
+
 }//end MainActivity
 
 

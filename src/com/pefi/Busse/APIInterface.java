@@ -83,6 +83,11 @@ public class APIInterface extends AsyncTask<String, String, String> {
     }
 
     @Override
+    protected void onProgressUpdate(String... values) {
+        super.onProgressUpdate(values);
+    }
+
+    @Override
     protected void onPostExecute(String result) {
 
         if (jsonArray != null){

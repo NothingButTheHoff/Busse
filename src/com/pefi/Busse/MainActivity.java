@@ -2,6 +2,7 @@ package com.pefi.Busse;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -39,6 +40,7 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
     APIInterface api;
 
     String firstArrivaltime, secondArrivaltime, thirdArrivaltime;
+    ProgressDialog progress;
 
 
     private List<Favourite> rowItem, favourites;
@@ -69,6 +71,8 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
             api = new APIInterface();
             api.execute("Favourites/GetFavourites?favouritesRequest=" + favoriteStops);
 
+            progress = ProgressDialog.show(this, null, getString(R.string.fetches_departures), true);
+
             long time = System.currentTimeMillis();
 
             name.setText(getString(R.string.last_updated) + " " + convertTime(time));
@@ -88,8 +92,12 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
         api.setTaskCompleteListener(new APIInterface.OnTaskComplete() {
             @Override
             public void setTaskComplete(JSONArray json) {
+                progress.dismiss();
+
                 if (json != null && json.length() > 0) {
+
                     rowItem = new ArrayList<Favourite>();
+
                     for (int i = 0; i < json.length(); i++)
                         try {
                             JSONObject jo = json.getJSONObject(i);
@@ -144,7 +152,6 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
             }
         });
 
-
         //api.setParseJSONObjectCompleteListener(new APIInterface.OnParseJSONObjectComplete() {
         //    @Override
         //    public void setParseJSONObjectComplete(JSONObject jsonObject) {
@@ -157,6 +164,7 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
         //        }
         //    }
         //});
+
     }
 
 

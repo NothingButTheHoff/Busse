@@ -50,9 +50,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6425ede2-23da-4e23-875a-1aac8b7d22c1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pefi/Busse/Favourite.java" afterPath="$PROJECT_DIR$/src/com/pefi/Busse/Favourite.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pefi/Busse/MainActivity.java" afterPath="$PROJECT_DIR$/src/com/pefi/Busse/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Busse.iws" />
@@ -89,8 +87,8 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.25592417" vertical-offset="1647" max-vertical-offset="4935">
-              <caret line="117" column="57" selection-start-line="117" selection-start-column="57" selection-end-line="117" selection-end-column="57" />
+            <state vertical-scroll-proportion="0.3601896" vertical-offset="3538" max-vertical-offset="4935">
+              <caret line="246" column="105" selection-start-line="246" selection-start-column="105" selection-end-line="246" selection-end-column="105" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2117#2149#0" expanded="true" />
@@ -103,8 +101,8 @@
                 <element signature="e#8772#8795#0" expanded="true" />
                 <element signature="method#convertTime#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#buildString#0;class#MainActivity#0" expanded="false" />
-                <element signature="e#11314#11315#0" expanded="true" />
-                <element signature="e#11342#11343#0" expanded="true" />
+                <element signature="e#11346#11347#0" expanded="true" />
+                <element signature="e#11374#11375#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -647,12 +645,12 @@
       <workItem from="1415890891294" duration="24221000" />
       <workItem from="1416307660536" duration="29552000" />
       <workItem from="1416422549774" duration="31434000" />
-      <workItem from="1416780186841" duration="23601000" />
+      <workItem from="1416780186841" duration="24283000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="140827000" />
+    <option name="totallyTimeSpent" value="141509000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="874" extended-state="0" />
@@ -739,8 +737,8 @@
             <element signature="e#8772#8795#0" expanded="true" />
             <element signature="method#convertTime#0;class#MainActivity#0" expanded="false" />
             <element signature="method#buildString#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#11314#11315#0" expanded="true" />
-            <element signature="e#11342#11343#0" expanded="true" />
+            <element signature="e#11346#11347#0" expanded="true" />
+            <element signature="e#11374#11375#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -863,8 +861,8 @@
             <element signature="e#8772#8795#0" expanded="true" />
             <element signature="method#convertTime#0;class#MainActivity#0" expanded="false" />
             <element signature="method#buildString#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#11314#11315#0" expanded="true" />
-            <element signature="e#11342#11343#0" expanded="true" />
+            <element signature="e#11346#11347#0" expanded="true" />
+            <element signature="e#11374#11375#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -901,8 +899,8 @@
             <element signature="e#8772#8795#0" expanded="true" />
             <element signature="method#convertTime#0;class#MainActivity#0" expanded="false" />
             <element signature="method#buildString#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#11314#11315#0" expanded="true" />
-            <element signature="e#11342#11343#0" expanded="true" />
+            <element signature="e#11346#11347#0" expanded="true" />
+            <element signature="e#11374#11375#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1182,8 +1180,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25592417" vertical-offset="1647" max-vertical-offset="4935">
-          <caret line="117" column="57" selection-start-line="117" selection-start-column="57" selection-end-line="117" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.3601896" vertical-offset="3538" max-vertical-offset="4935">
+          <caret line="246" column="105" selection-start-line="246" selection-start-column="105" selection-end-line="246" selection-end-column="105" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2117#2149#0" expanded="true" />
@@ -1196,8 +1194,8 @@
             <element signature="e#8772#8795#0" expanded="true" />
             <element signature="method#convertTime#0;class#MainActivity#0" expanded="false" />
             <element signature="method#buildString#0;class#MainActivity#0" expanded="false" />
-            <element signature="e#11314#11315#0" expanded="true" />
-            <element signature="e#11342#11343#0" expanded="true" />
+            <element signature="e#11346#11347#0" expanded="true" />
+            <element signature="e#11374#11375#0" expanded="true" />
           </folding>
         </state>
       </provider>

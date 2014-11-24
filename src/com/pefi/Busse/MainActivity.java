@@ -244,7 +244,7 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
                         if (deleteFavourite(f.getId())) {
                             Toast.makeText(getBaseContext(), f.getLineName() + " " + getString(R.string.was_deleted), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                         } else {
                             Toast.makeText(getBaseContext(), getString(R.string.could_not_delete) + " " + f.getLineName(), Toast.LENGTH_SHORT).show();
@@ -323,7 +323,7 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
             case R.id.refresh:
 
                 intent = new Intent(getBaseContext(), MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 return true;
 

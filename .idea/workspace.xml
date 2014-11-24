@@ -50,8 +50,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6425ede2-23da-4e23-875a-1aac8b7d22c1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/pefi/Busse/DBHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pefi/Busse/Favourite.java" afterPath="$PROJECT_DIR$/src/com/pefi/Busse/Favourite.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pefi/Busse/DBHandler.java" afterPath="$PROJECT_DIR$/src/com/pefi/Busse/DBHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/pefi/Busse/MainActivity.java" afterPath="$PROJECT_DIR$/src/com/pefi/Busse/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -76,61 +75,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="APIInterface.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/APIInterface.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="645" max-vertical-offset="2745">
-              <caret line="43" column="25" selection-start-line="43" selection-start-column="25" selection-end-line="43" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="2685">
-              <caret line="76" column="56" selection-start-line="76" selection-start-column="56" selection-end-line="76" selection-end-column="56" />
+            <state vertical-scroll-proportion="-3.093458" vertical-offset="2060" max-vertical-offset="2595">
+              <caret line="57" column="33" selection-start-line="57" selection-start-column="33" selection-end-line="57" selection-end-column="33" />
               <folding>
                 <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#showDialog#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#buildString#0;class#MainActivity#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DBHandler.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="DBHandler.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/DBHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="5.319489" vertical-offset="0" max-vertical-offset="2385">
-              <caret line="111" column="3" selection-start-line="111" selection-start-column="3" selection-end-line="111" selection-end-column="3" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="885" max-vertical-offset="2385">
+              <caret line="113" column="43" selection-start-line="113" selection-start-column="43" selection-end-line="113" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Favourite.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/Favourite.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1110">
-              <caret line="35" column="37" selection-start-line="35" selection-start-column="37" selection-end-line="35" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="420">
-              <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
           </provider>
         </entry>
       </file>
@@ -177,10 +144,10 @@
         <option value="$PROJECT_DIR$/res/menu/options_menu.xml" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/res/layout/main.xml" />
-        <option value="$PROJECT_DIR$/src/com/pefi/Busse/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/DBHandler.java" />
         <option value="$PROJECT_DIR$/src/com/pefi/Busse/Favourite.java" />
         <option value="$PROJECT_DIR$/src/com/pefi/Busse/DBHandler.java" />
+        <option value="$PROJECT_DIR$/src/com/pefi/Busse/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -575,12 +542,12 @@
       <workItem from="1415890891294" duration="24221000" />
       <workItem from="1416307660536" duration="29552000" />
       <workItem from="1416422549774" duration="31434000" />
-      <workItem from="1416780186841" duration="2913000" />
+      <workItem from="1416780186841" duration="6398000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120139000" />
+    <option name="totallyTimeSpent" value="123624000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="874" extended-state="0" />
@@ -601,7 +568,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32936507" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24964234" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33068782" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.53174603" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23809524" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -658,6 +625,7 @@
           <folding>
             <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
             <element signature="method#showDialog#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#buildString#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -767,6 +735,7 @@
           <folding>
             <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
             <element signature="method#showDialog#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#buildString#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -794,6 +763,7 @@
           <folding>
             <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
             <element signature="method#showDialog#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#buildString#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1038,17 +1008,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="2685">
-          <caret line="76" column="56" selection-start-line="76" selection-start-column="56" selection-end-line="76" selection-end-column="56" />
-          <folding>
-            <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#showDialog#0;class#MainActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/Favourite.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1110">
@@ -1059,10 +1018,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/DBHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="5.319489" vertical-offset="0" max-vertical-offset="2385">
-          <caret line="111" column="3" selection-start-line="111" selection-start-column="3" selection-end-line="111" selection-end-column="3" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="885" max-vertical-offset="2385">
+          <caret line="113" column="43" selection-start-line="113" selection-start-column="43" selection-end-line="113" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pefi/Busse/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.093458" vertical-offset="2060" max-vertical-offset="2595">
+          <caret line="57" column="33" selection-start-line="57" selection-start-column="33" selection-end-line="57" selection-end-column="33" />
+          <folding>
+            <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#showDialog#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#buildString#0;class#MainActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>

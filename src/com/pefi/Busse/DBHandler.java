@@ -19,7 +19,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     //database
     static String DATABASE_NAME = "FavouriteLines";
-    static int    DATABASE_VERSION = 1;
+    static int    DATABASE_VERSION = 2;
 
 
     //Friends table
@@ -30,7 +30,7 @@ public class DBHandler extends SQLiteOpenHelper {
     static String FAV_DESTINATION = "destination";
     static String FAV_DIRECTION = "direction";
     //Create Friends tables query
-    private static final String CREATE_TABLE_FAV = "CREATE TABLE " + TABLE_FAV + "(" + FAV_ID + " INTEGER PRIMARY KEY," + FAV_STOP_ID + " TEXT," + FAV_LINE_NO + " TEXT" + FAV_DESTINATION + "TEXT" + " INTEGER," + FAV_DIRECTION + ")";
+    private static final String CREATE_TABLE_FAV = "CREATE TABLE " + TABLE_FAV + "(" + FAV_ID + " INTEGER PRIMARY KEY," + FAV_STOP_ID + " TEXT," + FAV_LINE_NO + " TEXT," + FAV_DESTINATION + " TEXT," + FAV_DIRECTION + " INTEGER" +")";
 
 
 
@@ -109,9 +109,9 @@ public class DBHandler extends SQLiteOpenHelper {
         return null;
     }
 
-   
 
-    public List<Favourite> getAllFriends(){
+
+    public List<Favourite> getAllFavourites(){
         List<Favourite> friendsList = new ArrayList<>();
         String query = "SELECT * FROM " + TABLE_FAV;
         SQLiteDatabase db = getWritableDatabase();

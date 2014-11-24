@@ -38,9 +38,8 @@ public class MainActivity extends Activity implements OnItemClickListener{
 
     APIInterface api;
 
-    int stopId, lineNo;
-    String destination;
-    private List<Favourite> rowItem;
+
+    private List<Favourite> rowItem, favourites;
     private ListView list;
 
     @Override
@@ -50,20 +49,14 @@ public class MainActivity extends Activity implements OnItemClickListener{
 
         checkInternetConnection();
 
+        DBHandler db = new DBHandler(this);
 
-        //assign values for the query
-        stopId = 3012135;
-        lineNo = 30;
-        destination = "Bygdøy";
+        favourites = db.getAllFavourites();
 
-        StringBuilder sb = new StringBuilder();
-        sb.append(Integer.toString(stopId));
-        sb.append("-" + Integer.toString(lineNo));
-        sb.append("-" + destination);
-        Log.d(TAG, String.valueOf(sb));
+        String favoriteStops = buildString(favourites);
 
         api = new APIInterface();
-        api.execute("Favourites/GetFavourites?favouritesRequest=" + sb + ",3012135-51-Maridalen");
+        api.execute("Favourites/GetFavourites?favouritesRequest=" + favoriteStops);
 
         long time = System.currentTimeMillis();
 
@@ -221,6 +214,22 @@ public class MainActivity extends Activity implements OnItemClickListener{
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {}
 
 
+    public String buildString(List<Favourite> list){
+        StringBuilder sb = new StringBuilder();
+        for (Favourite f : list){
+            sb.append(f.getStopId() + "-");
+            sb.append(f.getLineNo() + "-");
+            sb.append(f.destination + ",");
+        }
+
+        String s = sb.toString();
+
+        if (s.endsWith(",")){
+            s = s.substring(0, s.length() -1);
+        }
+
+        return s;
+    }
 }//end MainActivity
 
 

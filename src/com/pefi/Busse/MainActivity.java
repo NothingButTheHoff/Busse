@@ -29,10 +29,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import static android.widget.AdapterView.OnItemClickListener;
+import static android.widget.AdapterView.OnItemLongClickListener;
 
 
-public class MainActivity extends Activity implements OnItemClickListener{
+public class MainActivity extends Activity implements OnItemLongClickListener{
     private final static String TAG = "MainActivity";
 
     APIInterface api;
@@ -103,11 +103,14 @@ public class MainActivity extends Activity implements OnItemClickListener{
                             list = (ListView) findViewById(R.id.favouriteList);
                             FavouritesBaseAdapter adapter = new FavouritesBaseAdapter(getBaseContext(), rowItem);
                             list.setAdapter(adapter);
-                            list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                            list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
                                 @Override
-                                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                    Toast.makeText(getBaseContext(), rowItem.get(i).getLineName(), Toast.LENGTH_SHORT).show();
+                                public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                                    showDeleteFavouriteDialog(rowItem.get(i));
+                                    return false;
                                 }
+
                             });
 
                         } catch (JSONException e) {
@@ -177,7 +180,7 @@ public class MainActivity extends Activity implements OnItemClickListener{
         if (networkInfo != null && networkInfo.isConnected()) {
             Log.i(TAG, "Connected to the internet");
         } else {
-            showDialog();
+            showInternetDialog();
             Log.i(TAG, "Internet is not available");
         }
 
@@ -185,7 +188,7 @@ public class MainActivity extends Activity implements OnItemClickListener{
 
 
 
-    public void showDialog(){
+    public void showInternetDialog(){
 
         new AlertDialog.Builder(this)
         .setTitle(getString(R.string.internet_required))
@@ -203,6 +206,28 @@ public class MainActivity extends Activity implements OnItemClickListener{
             }
         })
         .show();
+
+    }
+
+    public void showDeleteFavouriteDialog(Favourite f){
+
+        new AlertDialog.Builder(this)
+                .setTitle(f.getLineName())
+                .setMessage(getString(R.string.delete_fav))
+                .setPositiveButton( getString(R.string.yes), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(getBaseContext(), "JA", Toast.LENGTH_SHORT).show();
+                        //startActivity(new Intent(Settings.ACTION_SETTINGS));
+                    }
+                })
+                .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(getBaseContext(), "nei!", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .show();
 
     }
 
@@ -225,10 +250,6 @@ public class MainActivity extends Activity implements OnItemClickListener{
 
         return format.format(date);
     }
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {}
-
 
 
     public String buildString(List<Favourite> list){
@@ -254,7 +275,10 @@ public class MainActivity extends Activity implements OnItemClickListener{
     }
 
 
-
+    @Override
+    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+        return false;
+    }
 }//end MainActivity
 
 

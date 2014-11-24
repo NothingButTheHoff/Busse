@@ -15,7 +15,7 @@ import java.util.List;
  * Created by pererikfinstad on 05/10/14.
  */
 public class FavouritesBaseAdapter extends BaseAdapter {
-    public static final String TAG = "LinesBaseAdapter";
+    public static final String TAG = "FavouritesBaseAdapter";
 
     Context context;
     List<Favourite> rowItem;

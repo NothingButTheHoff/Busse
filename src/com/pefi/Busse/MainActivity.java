@@ -64,7 +64,6 @@ public class MainActivity extends Activity implements OnItemClickListener{
 
         api = new APIInterface();
         api.execute("Favourites/GetFavourites?favouritesRequest=" + sb + ",3012135-51-Maridalen");
-        //api.execute("Favourites/GetFavourites?favouritesRequest=3012135-51-Maridalen");
 
         long time = System.currentTimeMillis();
 
@@ -91,7 +90,7 @@ public class MainActivity extends Activity implements OnItemClickListener{
 
 
                             rowItem.add(fav);
-                            //rowItem.add(fav);
+
                             list = (ListView) findViewById(R.id.favouriteList);
                             FavouritesBaseAdapter adapter = new FavouritesBaseAdapter(getBaseContext(), rowItem);
                             list.setAdapter(adapter);

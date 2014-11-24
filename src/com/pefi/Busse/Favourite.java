@@ -6,27 +6,35 @@ package com.pefi.Busse;
 public class Favourite {
     public static final String TAG = "Favourite";
 
-    String stopiId, lineNo, destination, lineName, firstArrival, secondArrival, thirdArrival;
+    String stopId, lineNo, destination, lineName, firstArrival, secondArrival, thirdArrival;
+    int direction, id;
 
-    public Favourite(String stopiId, String lineNo, String destination) {
-        this.stopiId = stopiId;
-        this.lineNo = lineNo;
+    public Favourite(String stopId, String lineNo, String destination, int direction) {
+        this.stopId     = stopId;
+        this.lineNo      = lineNo;
         this.destination = destination;
+        this.direction   = direction;
+
     }
 
     public Favourite(String lineName, String firstArrival, String secondArrival, String thirdArrival) {
-        this.lineName = lineName;
-        this.thirdArrival = thirdArrival;
+        this.lineName      = lineName;
+        this.thirdArrival  = thirdArrival;
         this.secondArrival = secondArrival;
-        this.firstArrival = firstArrival;
+        this.firstArrival  = firstArrival;
     }
 
-    public String getStopiId() {
-        return stopiId;
+    public Favourite(){
+
     }
 
-    public void setStopiId(String stopiId) {
-        this.stopiId = stopiId;
+
+    public String getStopId() {
+        return stopId;
+    }
+
+    public void setStopId(String stopId) {
+        this.stopId = stopId;
     }
 
     public String getLineNo() {
@@ -76,4 +84,21 @@ public class Favourite {
     public void setThirdArrival(String thirdArrival) {
         this.thirdArrival = thirdArrival;
     }
+
+    public int getDirection() {
+        return direction;
+    }
+
+    public void setDirection(int direction) {
+        this.direction = direction;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 } //end class Favourite

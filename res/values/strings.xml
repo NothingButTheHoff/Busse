@@ -11,9 +11,14 @@
     <string name="delete">Slett</string>
     <string name="add">Legg til</string>
     <string name="exit">Avslutt</string>
+    <string name="cancel">Avbryt</string>
     <string name="lines">Linjer</string>
     <string name="stops">Stoppesteder</string>
     <string name="no_hits">Ingen treff...</string>
     <string name="update">Oppdater</string>
     <string name="last_updated">Sist oppdatert</string>
+
+    <string name="was_added_to_fav">ble lagt til favoritter</string>
+    <string name="add_to_favs">Legge til i favoritter?</string>
+    <string name="you_have_no_favs">Du har foreløpig ingen favoritter</string>
 </resources>

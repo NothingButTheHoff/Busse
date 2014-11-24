@@ -14,14 +14,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.SearchView;
-import android.widget.TextView;
+import android.widget.*;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -49,20 +48,37 @@ public class MainActivity extends Activity implements OnItemClickListener{
 
         checkInternetConnection();
 
+        TextView name = (TextView) findViewById(R.id.updated);
+
         DBHandler db = new DBHandler(this);
+
+        //db.insertFavourite(new Favourite("3012135", "30", "Bygdøy", 2));
 
         favourites = db.getAllFavourites();
 
-        String favoriteStops = buildString(favourites);
+        System.out.println(favourites);
+        if (favourites.size() > 0){
+            String favoriteStops = buildString(favourites);
+            Log.d(TAG, favoriteStops);
 
-        api = new APIInterface();
-        api.execute("Favourites/GetFavourites?favouritesRequest=" + favoriteStops);
+            api = new APIInterface();
+            api.execute("Favourites/GetFavourites?favouritesRequest=" + favoriteStops);
 
-        long time = System.currentTimeMillis();
+            long time = System.currentTimeMillis();
 
-        TextView name = (TextView) findViewById(R.id.updated);
-        name.setText(getString(R.string.last_updated) + " " + convertTime(time));
+            name.setText(getString(R.string.last_updated) + " " + convertTime(time));
 
+         setListener();
+
+        }
+        else{
+            name.setText(getString(R.string.you_have_no_favs));
+        }
+
+
+    }
+
+    public void setListener(){
 
         api.setTaskCompleteListener(new APIInterface.OnTaskComplete() {
             @Override
@@ -90,7 +106,7 @@ public class MainActivity extends Activity implements OnItemClickListener{
                             list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
                                 @Override
                                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                    //do something on click
+                                    Toast.makeText(getBaseContext(), rowItem.get(i).getLineName(), Toast.LENGTH_SHORT).show();
                                 }
                             });
 
@@ -114,8 +130,8 @@ public class MainActivity extends Activity implements OnItemClickListener{
         //        }
         //    }
         //});
-
     }
+
 
     /**
      * Method for creating the Action Bar menu and associates the
@@ -214,6 +230,7 @@ public class MainActivity extends Activity implements OnItemClickListener{
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {}
 
 
+
     public String buildString(List<Favourite> list){
         StringBuilder sb = new StringBuilder();
         for (Favourite f : list){
@@ -227,9 +244,17 @@ public class MainActivity extends Activity implements OnItemClickListener{
         if (s.endsWith(",")){
             s = s.substring(0, s.length() -1);
         }
+        try {
+            s = URLEncoder.encode(s, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
 
         return s;
     }
+
+
+
 }//end MainActivity
 
 

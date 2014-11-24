@@ -2,6 +2,8 @@ package com.pefi.Busse;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,7 +47,6 @@ public class LinesActivity extends Activity implements OnItemClickListener{
 
         Intent intent = getIntent();
         id = intent.getIntExtra("stopId", -1);
-        Toast.makeText(getBaseContext(), Integer.toString(id), Toast.LENGTH_SHORT).show();
 
         api.execute("Stopvisit/GetDepartures/" + id +"?json=true");
 
@@ -109,10 +110,16 @@ public class LinesActivity extends Activity implements OnItemClickListener{
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                             //do something
-                            Toast.makeText(getBaseContext(), "Yeah!", Toast.LENGTH_LONG).show();
-                            Intent intent1 = new Intent(getBaseContext(), StopsByLineActivity.class);
-                            intent1.putExtra("lineID", rowItem.get(i).getId() );
-                            startActivity(intent1);
+
+                            showDialog(rowItem.get(i));
+
+
+
+
+
+                            //Intent intent1 = new Intent(getBaseContext(), StopsByLineActivity.class);
+                            //intent1.putExtra("lineID", rowItem.get(i).getId() );
+                            //startActivity(intent1);
                         }
                     });
                 }
@@ -122,5 +129,36 @@ public class LinesActivity extends Activity implements OnItemClickListener{
             }
         });
     }//end setListener
+
+
+
+    public void showDialog(Line l){
+
+        new AlertDialog.Builder(this)
+                .setTitle(l.getName() + " " + l.getDestination())
+                .setMessage(getString(R.string.add_to_favs))
+                .setPositiveButton( getString(R.string.add), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        DBHandler db = new DBHandler(getBaseContext());
+                        db.insertFavourite(new Favourite(Integer.toString(id), l.getName(), l.getDestination(), 2));
+
+                        Toast.makeText(getBaseContext(), l.getName() + " " + l.getDestination() + " " + getString(R.string.was_added_to_fav), Toast.LENGTH_LONG).show();
+
+                        Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .show();
+
+    }
+
 
 } // end LinesActivity

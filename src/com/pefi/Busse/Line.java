@@ -7,19 +7,20 @@ public class Line {
     public static final String TAG = "LineClass";
 
     public String lineNo,destination,color;
-    public int id;
+    public int id, direction;
 
     public Line(String lineNo, int id, String destination, String color) {
-        this.lineNo = lineNo;
-        this.id = id;
+        this.lineNo      = lineNo;
+        this.id          = id;
         this.destination = destination;
-        this.color = color;
+        this.color       = color;
     }
 
     public Line(String lineNo, String destination, String color) {
-        this.lineNo = lineNo;
+        this.lineNo      = lineNo;
         this.destination = destination;
-        this.color = color;
+        this.color       = color;
+        this.direction   = direction;
     }
 
     public Line(String lineNo, String destination){
@@ -63,7 +64,13 @@ public class Line {
         this.destination = destination;
     }
 
+    public int getDirection() {
+        return direction;
+    }
 
+    public void setDirection(int direction) {
+        this.direction = direction;
+    }
 
     @Override
     public boolean equals(Object obj) {

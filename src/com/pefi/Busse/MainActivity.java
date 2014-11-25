@@ -263,7 +263,7 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
                 .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(getBaseContext(), "nei!", Toast.LENGTH_SHORT).show();
+                    //Closes the dialog without any actions
                     }
                 })
                 .show();

@@ -1,6 +1,7 @@
 package com.pefi.Busse;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,12 +29,16 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
     ListView list;
     List<Stop> rowItem;
 
+    ProgressDialog progress;
+
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
+
+        progress = ProgressDialog.show(this, null, getString(R.string.searches), true);
 
         api = new APIInterface();
 
@@ -49,6 +54,7 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
         }
 
         setListener();
+
     }
 
 
@@ -72,6 +78,7 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
         api.setTaskCompleteListener(new APIInterface.OnTaskComplete() {
             @Override
             public void setTaskComplete(JSONArray json) {
+                progress.dismiss();
 
                 if (json != null && json.length() > 0) {
 

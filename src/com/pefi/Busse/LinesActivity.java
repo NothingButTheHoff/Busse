@@ -3,6 +3,7 @@ package com.pefi.Busse;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -35,10 +36,14 @@ public class LinesActivity extends Activity implements OnItemClickListener{
     ListView list;
     List<Line> rowItem;
 
+    ProgressDialog progress;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.lines);
+
+        progress = ProgressDialog.show(this, null, getString(R.string.fetches_lines), true);
 
         ActionBar actionBar = getActionBar();
         actionBar.setIcon(null);
@@ -67,6 +72,7 @@ public class LinesActivity extends Activity implements OnItemClickListener{
         api.setTaskCompleteListener(new APIInterface.OnTaskComplete() {
             @Override
             public void setTaskComplete(JSONArray json) {
+                progress.dismiss();
 
                 if (json != null && json.length() > 0) {
 

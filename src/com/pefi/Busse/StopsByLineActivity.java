@@ -1,6 +1,7 @@
 package com.pefi.Busse;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +27,8 @@ public class StopsByLineActivity extends Activity implements AdapterView.OnItemC
     ListView list;
     List<Stop> rowItem;
 
+    ProgressDialog progress;
+
 
 
     @Override
@@ -41,7 +44,7 @@ public class StopsByLineActivity extends Activity implements AdapterView.OnItemC
 
         api.execute("Line/GetStopsByLineID/" + id);
 
-
+        progress = ProgressDialog.show(this, null, getString(R.string.searches_for_stops), true);
         setListener();
     }
 
@@ -54,6 +57,7 @@ public class StopsByLineActivity extends Activity implements AdapterView.OnItemC
         api.setTaskCompleteListener(new APIInterface.OnTaskComplete() {
             @Override
             public void setTaskComplete(JSONArray json) {
+                progress.dismiss();
 
                 if (json != null && json.length() > 0) {
 

@@ -38,7 +38,8 @@ import static android.widget.AdapterView.OnItemLongClickListener;
 public class MainActivity extends Activity implements OnItemLongClickListener{
     private final static String TAG = "MainActivity";
     //TODO Legge til mer inputvalidering
-    //TODO Lage logo til appen
+    //TODO Legge til hvilken stasjon man reiser fra....
+
     APIInterface api;
 
     String firstArrivaltime, secondArrivaltime, thirdArrivaltime;
@@ -57,11 +58,20 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
         setContentView(R.layout.main);
 
         checkInternetConnection();
-        progress = ProgressDialog.show(this, null, getString(R.string.fetches_departures), true);
+
+        DBHandler db = new DBHandler(this);
+
+        favourites = db.getAllFavourites();
 
         name = (TextView) findViewById(R.id.updated);
 
-        getAllFavourites();
+        if (favourites.size() > 0) {
+            progress = ProgressDialog.show(this, null, getString(R.string.fetches_departures), true);
+            getAllFavourites();
+        }
+        else{
+            name.setText(getString(R.string.you_have_no_favs));
+        }
 
     }
 
@@ -69,11 +79,6 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
 
     public void getAllFavourites(){
 
-        DBHandler db = new DBHandler(this);
-
-        favourites = db.getAllFavourites();
-
-        if (favourites.size() > 0){
             String favoriteStops = buildString(favourites);
             Log.d(TAG, favoriteStops);
 
@@ -86,10 +91,6 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
 
             setListener();
 
-        }
-        else{
-            name.setText(getString(R.string.you_have_no_favs));
-        }
     }
 
     public void setListener(){
@@ -106,7 +107,6 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
                     for (int i = 0; i < json.length(); i++)
                         try {
                             JSONObject jo = json.getJSONObject(i);
-                            //TODO endre ankomsttid til antall minutter/evt nå hvis det er < 45 sek til ankomst
 
                             String lineName = jo.getJSONArray("MonitoredStopVisits").getJSONObject(0).getJSONObject("MonitoredVehicleJourney").getString("PublishedLineName") + " " + jo.getString("Destination");
                             try{
@@ -186,7 +186,6 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.options_menu, menu);
-
 
         // Associate searchable configuration with the SearchView
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
@@ -372,15 +371,19 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
                 finish();
                 return true;
             case R.id.refresh:
-                progress = ProgressDialog.show(this, null, getString(R.string.updates), true);
 
-                getAllFavourites();
-                checkInternetConnection();
+                if (favourites.size() > 0){
+                    progress = ProgressDialog.show(this, null, getString(R.string.updates), true);
+
+                    getAllFavourites();
+                    checkInternetConnection();
+                    return true;
+                }
+                return false;
                 //intent = new Intent(getBaseContext(), MainActivity.class);
                 //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 //startActivity(intent);
                 //overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                return true;
             case R.id.info:
                 showInfoDialog();
                 return true;

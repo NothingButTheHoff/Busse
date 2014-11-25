@@ -19,7 +19,10 @@
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="#ffeaeaea"
+            android:background="#ff4a4a4a"
+            android:gravity="center_vertical"
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp"
             >
 
         <TextView
@@ -28,7 +31,9 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/firstArrival"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="center|center_vertical"
+                android:textColor="#ffffcb00"
+                android:text="asd"
                 />
 
         <TextView
@@ -37,7 +42,8 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/secondArrival"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="center|center_vertical"
+                android:textColor="#fff4f4f4"
                 />
 
         <TextView
@@ -46,7 +52,8 @@
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/thirdArrival"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="center|center_vertical"
+                android:textColor="#fff4f4f4"
                 />
     </LinearLayout>
 

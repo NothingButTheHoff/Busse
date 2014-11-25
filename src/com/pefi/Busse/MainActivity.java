@@ -200,7 +200,6 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
     protected void onResume() {
         super.onResume();
         checkInternetConnection();
-        progress.dismiss();
 
     }
 

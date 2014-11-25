@@ -3,6 +3,7 @@
               android:orientation="vertical"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
+              android:background="@drawable/background_busse"
         >
 
     <TextView
@@ -10,6 +11,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/updated"
             android:layout_gravity="center_horizontal"
+            android:textColor="#ffb1b1b1"
             />
 
     <ListView

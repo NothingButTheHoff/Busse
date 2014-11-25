@@ -39,6 +39,8 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
         setContentView(R.layout.search);
 
         progress = ProgressDialog.show(this, null, getString(R.string.searches), true);
+        //TODO Sjekk om nødvendig før levering
+        progress.setCancelable(true);
 
         api = new APIInterface();
 

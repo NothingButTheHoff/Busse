@@ -46,6 +46,7 @@ public class LinesActivity extends Activity implements OnItemClickListener{
 
         progress = ProgressDialog.show(this, null, getString(R.string.fetches_lines), true);
 
+
         ActionBar actionBar = getActionBar();
         actionBar.setIcon(null);
 
@@ -115,13 +116,7 @@ public class LinesActivity extends Activity implements OnItemClickListener{
 
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                            //do something
-
-                            //showDialog(rowItem.get(i));
-
-                            //Intent intent1 = new Intent(getBaseContext(), StopsByLineActivity.class);
-                            //intent1.putExtra("lineID", rowItem.get(i).getId() );
-                            //startActivity(intent1);
+                            showDialog(rowItem.get(i));
                         }
                     });
                 }
@@ -169,7 +164,6 @@ public class LinesActivity extends Activity implements OnItemClickListener{
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case android.R.id.home:
-                Toast.makeText(this, "Høøøy!", Toast.LENGTH_SHORT).show();
                 onBackPressed();
                 return true;
             default:

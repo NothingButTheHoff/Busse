@@ -12,10 +12,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
+import android.view.*;
 import android.widget.*;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,6 +44,7 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
 
     private List<Favourite> rowItem, favourites;
     private ListView list;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -257,6 +255,7 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
                             Intent intent = new Intent(getBaseContext(), MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
+                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         } else {
                             Toast.makeText(getBaseContext(), getString(R.string.could_not_delete) + " " + f.getLineName(), Toast.LENGTH_SHORT).show();
                         }
@@ -354,6 +353,7 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
                 return true;
             case R.id.info:
                 showInfoDialog();
+                return true;
             case android.R.id.home:
                 onBackPressed();
             default:

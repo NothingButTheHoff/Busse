@@ -35,7 +35,6 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
     private final static String TAG = "MainActivity";
     //TODO Legge til mer inputvalidering
     //TODO Lage logo til appen
-    //TODO overstyre action bar slik at tilbake knappen oppører seg på samme måte som onBackPressed
     APIInterface api;
 
     String firstArrivaltime, secondArrivaltime, thirdArrivaltime;
@@ -44,6 +43,8 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
 
     private List<Favourite> rowItem, favourites;
     private ListView list;
+    TextView name;
+    AlertDialog internetDialog;
 
 
     @Override
@@ -52,12 +53,20 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
         setContentView(R.layout.main);
 
         checkInternetConnection();
+        progress = ProgressDialog.show(this, null, getString(R.string.fetches_departures), true);
 
-        TextView name = (TextView) findViewById(R.id.updated);
+        name = (TextView) findViewById(R.id.updated);
+
+        getAllFavourites();
+
+    }
+
+
+
+    public void getAllFavourites(){
 
         DBHandler db = new DBHandler(this);
 
-        //db.deleteAllFavourites();
         favourites = db.getAllFavourites();
         for (Favourite f : favourites){
             System.out.println("Id: " + f.getId());
@@ -71,20 +80,16 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
             api = new APIInterface();
             api.execute("Favourites/GetFavourites?favouritesRequest=" + favoriteStops);
 
-            progress = ProgressDialog.show(this, null, getString(R.string.fetches_departures), true);
-
             long time = System.currentTimeMillis();
 
             name.setText(getString(R.string.last_updated) + " " + convertTime(time));
 
-         setListener();
+            setListener();
 
         }
         else{
             name.setText(getString(R.string.you_have_no_favs));
         }
-
-
     }
 
     public void setListener(){
@@ -195,7 +200,13 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
     protected void onResume() {
         super.onResume();
         checkInternetConnection();
+        progress.dismiss();
 
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
     }
 
     /**
@@ -212,6 +223,7 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
 
         if (networkInfo != null && networkInfo.isConnected()) {
             Log.i(TAG, "Connected to the internet");
+
         } else {
             showInternetDialog();
             Log.i(TAG, "Internet is not available");
@@ -223,7 +235,7 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
 
     public void showInternetDialog(){
 
-        new AlertDialog.Builder(this)
+         internetDialog = new AlertDialog.Builder(this)
         .setTitle(getString(R.string.internet_required))
         .setMessage(getString(R.string.turn_on_internet))
         .setPositiveButton( getString(R.string.yes), new DialogInterface.OnClickListener() {
@@ -346,10 +358,14 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
                 finish();
                 return true;
             case R.id.refresh:
-                intent = new Intent(getBaseContext(), MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                progress = ProgressDialog.show(this, null, getString(R.string.updates), true);
+
+                getAllFavourites();
+                checkInternetConnection();
+                //intent = new Intent(getBaseContext(), MainActivity.class);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                //startActivity(intent);
+                //overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 return true;
             case R.id.info:
                 showInfoDialog();

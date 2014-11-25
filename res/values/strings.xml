@@ -11,7 +11,10 @@
     <string name="was_deleted">ble slettet</string>
     <string name="could_not_delete">Kunne ikke slette</string>
     <string name="fetches_departures">Henter avganger</string>
-
+    <string name="info">Info</string>
+    <string name="info_text">Denne appen lar deg lagre dine mest brukte linjer i offentlig transport. Søk etter stoppestedet
+    du ønsker å reise fra og legg det til som en favoritt. Da kan du raskt og enkelt få oversikt over de neste avgangene fra
+        dette stoppestedet.</string>
     <string name="delete">Slett</string>
     <string name="add">Legg til</string>
     <string name="exit">Avslutt</string>
@@ -21,6 +24,7 @@
     <string name="no_hits">Ingen treff...</string>
     <string name="update">Oppdater</string>
     <string name="last_updated">Sist oppdatert</string>
+    <string name="close">Lukk</string>
 
     <string name="was_added_to_fav">ble lagt til favoritter</string>
     <string name="add_to_favs">Legge til i favoritter?</string>

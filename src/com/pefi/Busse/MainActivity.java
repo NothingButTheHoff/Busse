@@ -270,6 +270,21 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
 
     }
 
+
+    public void showInfoDialog(){
+
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.info))
+                .setMessage(getString(R.string.info_text))
+                .setPositiveButton(getString(R.string.close), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                }).show();
+
+    }
+
     public static String formatDate(String dateString) {
         Date date;
         String formattedDate = "";
@@ -334,6 +349,8 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 return true;
+            case R.id.info:
+                showInfoDialog();
 
             default:
                 return super.onOptionsItemSelected(item);

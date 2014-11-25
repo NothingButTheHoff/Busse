@@ -12,7 +12,7 @@
     <string name="could_not_delete">Kunne ikke slette</string>
     <!--Progress messages-->
     <string name="fetches_departures">Henter avganger</string>
-    <string name="searches_for_stops">Søker etter stoppesteder...</string>
+    <string name="searches_for_stops">Søker etter stoppesteder</string>
     <string name="searches">Søker</string>
     <string name="fetches_lines">Henter linjer</string>
 

@@ -36,7 +36,9 @@ import static android.widget.AdapterView.OnItemLongClickListener;
 
 public class MainActivity extends Activity implements OnItemLongClickListener{
     private final static String TAG = "MainActivity";
-
+    //TODO Legge til mer inputvalidering
+    //TODO Lage logo til appen
+    //TODO overstyre action bar slik at tilbake knappen oppører seg på samme måte som onBackPressed
     APIInterface api;
 
     String firstArrivaltime, secondArrivaltime, thirdArrivaltime;
@@ -101,6 +103,7 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
                     for (int i = 0; i < json.length(); i++)
                         try {
                             JSONObject jo = json.getJSONObject(i);
+                            //TODO endre ankomsttid til antall minutter/evt nå hvis det er < 45 sek til ankomst
 
                             String lineName = jo.getJSONArray("MonitoredStopVisits").getJSONObject(0).getJSONObject("MonitoredVehicleJourney").getString("PublishedLineName") + " " + jo.getString("Destination");
                             try{
@@ -344,14 +347,15 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
                 finish();
                 return true;
             case R.id.refresh:
-
                 intent = new Intent(getBaseContext(), MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 return true;
             case R.id.info:
                 showInfoDialog();
-
+            case android.R.id.home:
+                onBackPressed();
             default:
                 return super.onOptionsItemSelected(item);
         }

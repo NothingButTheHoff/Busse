@@ -28,7 +28,8 @@
 
         <activity android:name=".SearchResultActivity"
                 android:icon="@android:color/transparent"
-                android:label="@string/stops">
+                android:label="@string/stops"
+                android:parentActivityName=".MainActivity">
             <intent-filter><action android:name="android.intent.action.SEARCH" /></intent-filter>
 
             <meta-data android:name="android.app.searchable"
@@ -36,6 +37,7 @@
         </activity>
         <activity android:name=".LinesActivity"
                   android:icon="@android:color/transparent"
+                  android:parentActivityName=".SearchResultActivity"
                   android:label="@string/lines"/>
         <activity android:name=".StopsByLineActivity"
                   android:icon="@android:color/transparent"/>

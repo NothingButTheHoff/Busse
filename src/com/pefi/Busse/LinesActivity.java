@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -67,7 +68,6 @@ public class LinesActivity extends Activity implements OnItemClickListener{
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {}
 
 
-
     private void setListener(){
         api.setTaskCompleteListener(new APIInterface.OnTaskComplete() {
             @Override
@@ -117,11 +117,7 @@ public class LinesActivity extends Activity implements OnItemClickListener{
                         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                             //do something
 
-                            showDialog(rowItem.get(i));
-
-
-
-
+                            //showDialog(rowItem.get(i));
 
                             //Intent intent1 = new Intent(getBaseContext(), StopsByLineActivity.class);
                             //intent1.putExtra("lineID", rowItem.get(i).getId() );
@@ -134,6 +130,7 @@ public class LinesActivity extends Activity implements OnItemClickListener{
                 }
             }
         });
+
     }//end setListener
 
 
@@ -164,6 +161,20 @@ public class LinesActivity extends Activity implements OnItemClickListener{
                 })
                 .show();
 
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case android.R.id.home:
+                Toast.makeText(this, "Høøøy!", Toast.LENGTH_SHORT).show();
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 

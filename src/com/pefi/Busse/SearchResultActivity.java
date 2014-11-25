@@ -6,10 +6,10 @@ import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,7 +47,7 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
 
-            query = query.replaceAll("\\s+","");
+            query = query.replaceAll("\\s+", "");
             Log.d(TAG, "Stop to be searched for: " + query);
             search(query);
 
@@ -105,9 +105,7 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
 
                                         Intent intent = new Intent(getBaseContext(), LinesActivity.class);
                                         intent.putExtra("stopId", id);
-                                        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         startActivity(intent);
-                                        Toast.makeText(getBaseContext(), Integer.toString(id) , Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -130,6 +128,17 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
             }
         });
     } // end setListener
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
 
 }// end SearchResultActivity

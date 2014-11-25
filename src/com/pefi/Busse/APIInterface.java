@@ -76,6 +76,7 @@ public class APIInterface extends AsyncTask<String, String, String> {
             jsonObject = parseJSONObject(jsonString);
         }
 
+        //TODO sjekke HTTP response code
         Log.i(TAG, "HTTP Response Code: " + response);
 
         return result;

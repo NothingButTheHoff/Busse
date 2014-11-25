@@ -12,7 +12,10 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
-import android.view.*;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.*;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import static android.widget.AdapterView.OnItemLongClickListener;
 
@@ -68,10 +72,6 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
         DBHandler db = new DBHandler(this);
 
         favourites = db.getAllFavourites();
-        for (Favourite f : favourites){
-            System.out.println("Id: " + f.getId());
-            System.out.println(f.getDestination());
-        }
 
         if (favourites.size() > 0){
             String favoriteStops = buildString(favourites);
@@ -110,7 +110,7 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
 
                             String lineName = jo.getJSONArray("MonitoredStopVisits").getJSONObject(0).getJSONObject("MonitoredVehicleJourney").getString("PublishedLineName") + " " + jo.getString("Destination");
                             try{
-                                firstArrivaltime = jo.getJSONArray("MonitoredStopVisits").getJSONObject(0).getJSONObject("MonitoredVehicleJourney").getJSONObject("MonitoredCall").getString("ExpectedArrivalTime");
+                                firstArrivaltime = jo.getJSONArray("MonitoredStopVisits").getJSONObject(0).getJSONObject("MonitoredVehicleJourney").getJSONObject("MonitoredCall").getString("ExpectedDepartureTime");
                                 firstArrivaltime = formatDate(firstArrivaltime);
                             }
                             catch (JSONException e){
@@ -118,14 +118,14 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
                                 e.getMessage();
                             }
                             try{
-                                secondArrivaltime = jo.getJSONArray("MonitoredStopVisits").getJSONObject(1).getJSONObject("MonitoredVehicleJourney").getJSONObject("MonitoredCall").getString("ExpectedArrivalTime");
+                                secondArrivaltime = jo.getJSONArray("MonitoredStopVisits").getJSONObject(1).getJSONObject("MonitoredVehicleJourney").getJSONObject("MonitoredCall").getString("ExpectedDepartureTime");
                                 secondArrivaltime = formatDate(secondArrivaltime);
                             }
                             catch (JSONException e){
                                 secondArrivaltime = "n/a";
                             }
                             try{
-                                thirdArrivaltime  = jo.getJSONArray("MonitoredStopVisits").getJSONObject(2).getJSONObject("MonitoredVehicleJourney").getJSONObject("MonitoredCall").getString("ExpectedArrivalTime");
+                                thirdArrivaltime  = jo.getJSONArray("MonitoredStopVisits").getJSONObject(2).getJSONObject("MonitoredVehicleJourney").getJSONObject("MonitoredCall").getString("ExpectedDepartureTime");
                                 thirdArrivaltime = formatDate(thirdArrivaltime);
                             }
                             catch (JSONException e){
@@ -299,12 +299,27 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
 
     }
 
-    public static String formatDate(String dateString) {
+    public String formatDate(String dateString) {
         Date date;
         String formattedDate = "";
+
         try {
             date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()).parse(dateString);
-            formattedDate = new SimpleDateFormat("HH:mm",Locale.getDefault()).format(date);
+
+            long interval = date.getTime()- new Date().getTime();
+            long diffInMinutes = TimeUnit.MILLISECONDS.toMinutes(interval);
+
+            //sets text based on number of minutes upon departure
+            if (diffInMinutes < 1){
+                formattedDate = getString(R.string.now);
+            }
+            else if (diffInMinutes < 8 ){
+                formattedDate = diffInMinutes + " " + getString(R.string.minutes);
+            }
+            else{
+                formattedDate = new SimpleDateFormat("HH:mm",Locale.getDefault()).format(date);
+            }
+
         } catch (ParseException e) {
             e.printStackTrace();
         }

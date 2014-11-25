@@ -7,6 +7,8 @@
     <string name="turn_on_internet">Vil du slå på internett?</string>
     <string name="yes">Ja</string>
     <string name="no">Nei</string>
+    <string name="now">nå</string>
+    <string name="minutes">min</string>
     <string name="delete_fav">Slette fra favoritter?</string>
     <string name="was_deleted">ble slettet</string>
     <string name="could_not_delete">Kunne ikke slette</string>

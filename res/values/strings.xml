@@ -42,5 +42,5 @@
     <string name="you_have_no_favs">Du har foreløpig ingen favoritter</string>
 
     <!-- Empty views-->
-    <string name="no_lines">Ingen linjer funnet for dette stoppet...</string>
+    <string name="no_lines">Ingen linjer funnet...</string>
 </resources>

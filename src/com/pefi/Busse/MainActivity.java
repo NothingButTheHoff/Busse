@@ -108,8 +108,15 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
                     for (int i = 0; i < json.length(); i++)
                         try {
                             JSONObject jo = json.getJSONObject(i);
+                            String lineName;
+                            try{
+                                lineName = jo.getJSONArray("MonitoredStopVisits").getJSONObject(0).getJSONObject("MonitoredVehicleJourney").getString("PublishedLineName") + " " + jo.getString("Destination");
+                            }
+                            catch (JSONException e){
+                                e.getMessage();
+                                lineName = jo.getString("Destination");
+                            }
 
-                            String lineName = jo.getJSONArray("MonitoredStopVisits").getJSONObject(0).getJSONObject("MonitoredVehicleJourney").getString("PublishedLineName") + " " + jo.getString("Destination");
                             try{
                                 firstArrivaltime = jo.getJSONArray("MonitoredStopVisits").getJSONObject(0).getJSONObject("MonitoredVehicleJourney").getJSONObject("MonitoredCall").getString("ExpectedDepartureTime");
                                 firstArrivaltime = formatDate(firstArrivaltime);
@@ -124,6 +131,7 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
                             }
                             catch (JSONException e){
                                 secondArrivaltime = "n/a";
+                                e.getMessage();
                             }
                             try{
                                 thirdArrivaltime  = jo.getJSONArray("MonitoredStopVisits").getJSONObject(2).getJSONObject("MonitoredVehicleJourney").getJSONObject("MonitoredCall").getString("ExpectedDepartureTime");
@@ -134,7 +142,15 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
                                 e.getMessage();
                             }
 
-                            String color = jo.getJSONArray("MonitoredStopVisits").getJSONObject(0).getJSONObject("Extensions").getString("LineColour");
+                            String color;
+                            try{
+                                color = jo.getJSONArray("MonitoredStopVisits").getJSONObject(0).getJSONObject("Extensions").getString("LineColour");
+                            }
+                            catch (JSONException e){
+                                e.getMessage();
+                                color = "B4B4B4";
+                            }
+
 
                             Favourite fav = new Favourite(favourites.get(i).getId(), lineName, firstArrivaltime, secondArrivaltime, thirdArrivaltime, color, favourites.get(i).fromStopName);
 

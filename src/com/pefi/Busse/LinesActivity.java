@@ -95,6 +95,7 @@ public class LinesActivity extends Activity implements OnItemClickListener{
                             System.out.println(jo.names());
                             Line item = new Line(j.getString("PublishedLineName"), j.getString("LineRef"), j.getString("DestinationName"), j2.getString("LineColour"));
 
+                            Log.d(TAG, "LineNo: " + item.getLineNo() + "- LineName: " + item.getLineRef());
                             if (! rowItem.contains(item)){
                                 rowItem.add(item);
                             }
@@ -127,10 +128,6 @@ public class LinesActivity extends Activity implements OnItemClickListener{
                 }
                 else {
                     System.out.println("No data from the API");
-                    //rowItem.add(new Line(getString(R.string.no_lines), "", "","EEEEEE"));
-                    //list = (ListView) findViewById(R.id.linesList);
-                    //LinesBaseAdapter adapter = new LinesBaseAdapter(getBaseContext(), rowItem);
-                    //list.setAdapter(adapter);
                     list = (ListView) findViewById(R.id.linesList);
                     list.setVisibility(View.GONE);
                     TextView empty = (TextView) findViewById(R.id.linesEmpty);

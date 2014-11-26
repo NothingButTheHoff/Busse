@@ -62,7 +62,7 @@ public class LinesBaseAdapter extends BaseAdapter {
 
         Line row_pos = rowItem.get(position);
 
-        name.setText(row_pos.getName());
+        name.setText(row_pos.getLineNo());
         dest.setText(row_pos.getDestination());
         //bullet.setText(Html.fromHtml("&#3663"));
         //

@@ -39,6 +39,7 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
     private final static String TAG = "MainActivity";
     //TODO Legge til mer inputvalidering
     //TODO Legge til hvilken stasjon man reiser fra....
+    //TODO Legge til søkeforslag??
 
     APIInterface api;
 
@@ -403,7 +404,13 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
         return false;
     }
 
-
+    public boolean onQueryTextSubmit (String query){
+        Log.d(TAG, "hit me!!!");
+        if( query.equals(".")){
+            return false;
+        }
+        return true;
+    }
 
 }//end MainActivity
 

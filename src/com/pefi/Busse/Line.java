@@ -6,12 +6,12 @@ package com.pefi.Busse;
 public class Line {
     public static final String TAG = "LineClass";
 
-    public String lineNo,destination,color;
-    public int id, direction;
+    public String lineNo,lineRef, destination,color;
+    public int direction;
 
-    public Line(String lineNo, int id, String destination, String color) {
+    public Line(String lineNo, String lineRef, String destination, String color) {
         this.lineNo      = lineNo;
-        this.id          = id;
+        this.lineRef     = lineRef;
         this.destination = destination;
         this.color       = color;
     }
@@ -20,7 +20,6 @@ public class Line {
         this.lineNo      = lineNo;
         this.destination = destination;
         this.color       = color;
-        this.direction   = direction;
     }
 
     public Line(String lineNo, String destination){
@@ -32,20 +31,20 @@ public class Line {
         this.lineNo = lineNo;
     }
 
-    public String getName() {
+    public String getLineNo() {
         return lineNo;
     }
 
-    public void setName(String lineNo) {
+    public void setLineNo(String lineNo) {
         this.lineNo = lineNo;
     }
 
-    public int getId() {
-        return id;
+    public String getLineRef() {
+        return lineRef;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setLineRef(String lineRef) {
+        this.lineRef = lineRef;
     }
 
     public String getDestination(){
@@ -81,7 +80,7 @@ public class Line {
             return false;
         } else if (obj instanceof Line) {
             Line line = (Line) obj;
-            if ((line.getName() == null && lineNo == null) || (line.getName().equals(lineNo)
+            if ((line.getLineNo() == null && lineNo == null) || (line.getLineNo().equals(lineNo)
                     &&
                 ((line.getDestination() == null && destination == null) || line.getDestination().equals(destination)))) {
                 return true;

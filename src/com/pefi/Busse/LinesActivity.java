@@ -89,7 +89,7 @@ public class LinesActivity extends Activity implements OnItemClickListener{
                             JSONObject j = jo.getJSONObject("MonitoredVehicleJourney");
                             JSONObject j2 = jo.getJSONObject("Extensions");
                             System.out.println(jo.names());
-                            Line item = new Line(j.getString("LineRef"), j.getString("DestinationName"), j2.getString("LineColour"));
+                            Line item = new Line(j.getString("PublishedLineName"), j.getString("LineRef"), j.getString("DestinationName"), j2.getString("LineColour"));
 
                             if (! rowItem.contains(item)){
                                 rowItem.add(item);
@@ -104,10 +104,11 @@ public class LinesActivity extends Activity implements OnItemClickListener{
 
                     Collections.sort(rowItem, new Comparator<Line>() {
                         @Override public int compare(Line l1, Line l2) {
-                            return Integer.parseInt(l1.getName()) - Integer.parseInt(l2.getName()); // Ascending
+                            return Integer.parseInt(l1.getLineRef()) - Integer.parseInt(l2.getLineRef()); // Ascending
                         }
 
                     });
+
                     //set the adapter
                     list = (ListView) findViewById(R.id.linesList);
                     LinesBaseAdapter adapter = new LinesBaseAdapter(getBaseContext(), rowItem);
@@ -133,19 +134,20 @@ public class LinesActivity extends Activity implements OnItemClickListener{
     public void showDialog(Line l){
 
         new AlertDialog.Builder(this)
-                .setTitle(l.getName() + " " + l.getDestination())
+                .setTitle(l.getLineNo() + " " + l.getDestination())
                 .setMessage(getString(R.string.add_to_favs))
                 .setPositiveButton( getString(R.string.add), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         DBHandler db = new DBHandler(getBaseContext());
-                        db.insertFavourite(new Favourite(Integer.toString(id), l.getName(), l.getDestination(), 2));
+                        db.insertFavourite(new Favourite(Integer.toString(id), l.getLineRef(), l.getDestination(), 2));
 
-                        Toast.makeText(getBaseContext(), l.getName() + " " + l.getDestination() + " " + getString(R.string.was_added_to_fav), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getBaseContext(), l.getLineRef() + " " + l.getDestination() + " " + getString(R.string.was_added_to_fav), Toast.LENGTH_LONG).show();
 
                         Intent intent = new Intent(getBaseContext(), MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                     }
                 })
                 .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {

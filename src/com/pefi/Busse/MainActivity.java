@@ -134,7 +134,9 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
                                 e.getMessage();
                             }
 
-                            Favourite fav = new Favourite(favourites.get(i).getId(), lineName, firstArrivaltime, secondArrivaltime, thirdArrivaltime);
+                            String color = jo.getJSONArray("MonitoredStopVisits").getJSONObject(0).getJSONObject("Extensions").getString("LineColour");
+
+                            Favourite fav = new Favourite(favourites.get(i).getId(), lineName, firstArrivaltime, secondArrivaltime, thirdArrivaltime, color);
 
 
                             rowItem.add(fav);

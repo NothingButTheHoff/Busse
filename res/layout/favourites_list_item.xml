@@ -5,6 +5,16 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+    <LinearLayout
+                  android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/lineColor"
+        android:layout_width="5dp"
+        android:layout_height="50dp"/>
+
     <TextView
             android:layout_width="fill_parent"
             android:layout_height="50dp"
@@ -14,6 +24,8 @@
             android:paddingLeft="20dp"
             android:background="#ffb4b4b4"
             />
+
+    </LinearLayout>
 
     <LinearLayout
             android:orientation="horizontal"
@@ -27,13 +39,12 @@
 
         <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/firstArrival"
                 android:layout_weight="1"
                 android:gravity="center|center_vertical"
                 android:textColor="#ffffcb00"
-                android:text="asd"
                 />
 
         <TextView
@@ -48,7 +59,7 @@
 
         <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/thirdArrival"
                 android:layout_weight="1"

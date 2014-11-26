@@ -40,4 +40,7 @@
     <string name="was_added_to_fav">ble lagt til favoritter</string>
     <string name="add_to_favs">Legge til i favoritter?</string>
     <string name="you_have_no_favs">Du har foreløpig ingen favoritter</string>
+
+    <!-- Empty views-->
+    <string name="no_lines">Ingen linjer funnet for dette stoppet...</string>
 </resources>

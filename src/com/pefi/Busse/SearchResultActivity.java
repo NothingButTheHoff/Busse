@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -119,18 +120,16 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
 
                 } else {
                     //If the api returns 0 hits
-                    rowItem = new ArrayList<Stop>();
-                    Stop item = new Stop(getString(R.string.no_hits));
-                    Log.d(TAG, item.getName());
-                    rowItem.add(item);
-
                     list = (ListView) findViewById(R.id.stopList);
-                    StopsBaseAdapter adapter = new StopsBaseAdapter(getBaseContext(), rowItem);
-                    list.setAdapter(adapter);
+                    list.setVisibility(View.GONE);
+                    TextView empty = (TextView) findViewById(R.id.stopsEmpty);
+                    empty.setVisibility(View.VISIBLE);
+
                 }
 
             }
         });
+
     } // end setListener
 
     @Override

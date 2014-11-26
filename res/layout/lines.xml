@@ -10,4 +10,15 @@
             android:layout_height="wrap_content"
             android:id="@+id/linesList"
             />
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/no_lines"
+            android:visibility="gone"
+            android:id="@+id/linesEmpty"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            />
+
 </LinearLayout>

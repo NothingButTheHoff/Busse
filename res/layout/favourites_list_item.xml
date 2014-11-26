@@ -31,7 +31,6 @@
                 android:paddingLeft="20dp"
 
                 android:background="#ffb4b4b4"
-                android:text="30 Nydalen"
                     />
 
             <TextView

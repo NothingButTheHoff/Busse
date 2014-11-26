@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -77,9 +78,10 @@ public class LinesActivity extends Activity implements OnItemClickListener{
             public void setTaskComplete(JSONArray json) {
                 progress.dismiss();
 
+                rowItem = new ArrayList<Line>();
+
                 if (json != null && json.length() > 0) {
 
-                    rowItem = new ArrayList<Line>();
 
                     for (int i = 0; i < json.length(); i++) {
                         System.out.println("Antall kall: " + Integer.toString(i));
@@ -125,6 +127,15 @@ public class LinesActivity extends Activity implements OnItemClickListener{
                 }
                 else {
                     System.out.println("No data from the API");
+                    //rowItem.add(new Line(getString(R.string.no_lines), "", "","EEEEEE"));
+                    //list = (ListView) findViewById(R.id.linesList);
+                    //LinesBaseAdapter adapter = new LinesBaseAdapter(getBaseContext(), rowItem);
+                    //list.setAdapter(adapter);
+                    list = (ListView) findViewById(R.id.linesList);
+                    list.setVisibility(View.GONE);
+                    TextView empty = (TextView) findViewById(R.id.linesEmpty);
+                    empty.setVisibility(View.VISIBLE);
+
                 }
             }
         });

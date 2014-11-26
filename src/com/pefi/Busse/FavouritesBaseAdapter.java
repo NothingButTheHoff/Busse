@@ -56,6 +56,7 @@ public class FavouritesBaseAdapter extends BaseAdapter {
 
         View lineColor    = (View) convertView.findViewById(R.id.lineColor);
         TextView lineName = (TextView) convertView.findViewById(R.id.lineName);
+        TextView fromStop = (TextView) convertView.findViewById(R.id.fromStopName);
         TextView first    = (TextView) convertView.findViewById(R.id.firstArrival);
         TextView second   = (TextView) convertView.findViewById(R.id.secondArrival);
         TextView third    = (TextView) convertView.findViewById(R.id.thirdArrival);
@@ -63,6 +64,7 @@ public class FavouritesBaseAdapter extends BaseAdapter {
         Favourite row_pos = rowItem.get(position);
 
         lineName.setText(row_pos.getLineName());
+        fromStop.setText(row_pos.getFromStopName());
         first.setText(row_pos.getFirstArrival());
         second.setText(row_pos.getSecondArrival());
         third.setText(row_pos.getThirdArrival());

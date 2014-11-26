@@ -104,9 +104,11 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
                                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                                         Stop stop = rowItem.get(i);
                                         int id = stop.getId();
+                                        String stopName = stop.getName();
 
                                         Intent intent = new Intent(getBaseContext(), LinesActivity.class);
                                         intent.putExtra("stopId", id);
+                                        intent.putExtra("stopName", stopName);
                                         startActivity(intent);
                                     }
                                 });

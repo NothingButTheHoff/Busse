@@ -8,22 +8,40 @@
     <LinearLayout
                   android:orientation="horizontal"
                   android:layout_width="match_parent"
-                  android:layout_height="wrap_content">
+                  android:layout_height="50dp">
 
     <View
         android:id="@+id/lineColor"
         android:layout_width="5dp"
         android:layout_height="50dp"/>
 
-    <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/lineName"
-            android:gravity="center_vertical"
-            android:paddingLeft="20dp"
-            android:background="#ffb4b4b4"
-            />
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:background="#ffb4b4b4"
+                android:gravity="center_vertical"
+                >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/lineName"
+                android:paddingLeft="20dp"
+
+                android:background="#ffb4b4b4"
+                android:text="30 Nydalen"
+                    />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/fromStopName"
+                    android:paddingLeft="20dp"
+                    />
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -39,7 +57,7 @@
 
         <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
+                android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/firstArrival"
                 android:layout_weight="1"
@@ -59,7 +77,7 @@
 
         <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:id="@+id/thirdArrival"
                 android:layout_weight="1"

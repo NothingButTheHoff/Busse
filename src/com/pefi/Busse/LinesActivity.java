@@ -33,6 +33,7 @@ public class LinesActivity extends Activity implements OnItemClickListener{
 
     APIInterface api;
     int id;
+    String stopName;
 
     ListView list;
     List<Line> rowItem;
@@ -54,6 +55,7 @@ public class LinesActivity extends Activity implements OnItemClickListener{
 
         Intent intent = getIntent();
         id = intent.getIntExtra("stopId", -1);
+        stopName = intent.getStringExtra("stopName");
 
         api.execute("Stopvisit/GetDepartures/" + id +"?json=true");
 
@@ -140,7 +142,7 @@ public class LinesActivity extends Activity implements OnItemClickListener{
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         DBHandler db = new DBHandler(getBaseContext());
-                        db.insertFavourite(new Favourite(Integer.toString(id), l.getLineRef(), l.getDestination(), 2));
+                        db.insertFavourite(new Favourite(Integer.toString(id), l.getLineRef(), l.getDestination(), stopName));
 
                         Toast.makeText(getBaseContext(), l.getLineRef() + " " + l.getDestination() + " " + getString(R.string.was_added_to_fav), Toast.LENGTH_LONG).show();
 

@@ -7,6 +7,7 @@
     <string name="turn_on_internet">Vil du slå på internett?</string>
     <string name="yes">Ja</string>
     <string name="no">Nei</string>
+    <string name="from">fra</string>
     <string name="now">nå</string>
     <string name="minutes">min</string>
     <string name="delete_fav">Slette fra favoritter?</string>
@@ -18,6 +19,7 @@
     <string name="searches">Søker</string>
     <string name="fetches_lines">Henter linjer</string>
     <string name="updates">Oppdaterer</string>
+    <string name="unknown">ukjent</string>
 
 
     <string name="info">Info</string>

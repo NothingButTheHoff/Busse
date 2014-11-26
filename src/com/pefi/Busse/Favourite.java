@@ -17,13 +17,14 @@ public class Favourite {
 
     }
 
-    public Favourite(int id, String lineName, String firstArrival, String secondArrival, String thirdArrival, String lineColor) {
+    public Favourite(int id, String lineName, String firstArrival, String secondArrival, String thirdArrival, String lineColor, String stopName) {
         this.lineName      = lineName;
         this.thirdArrival  = thirdArrival;
         this.secondArrival = secondArrival;
         this.firstArrival  = firstArrival;
         this.id            = id;
         this.lineColor     = lineColor;
+        this.fromStopName  = stopName;
     }
 
     public Favourite(){

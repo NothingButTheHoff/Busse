@@ -53,6 +53,7 @@ public class APIInterface extends AsyncTask<String, String, String> {
             try {
                 HttpResponse httpresponse = httpclient.execute(get);
                 response = httpresponse.getStatusLine().getStatusCode();
+
                 HttpEntity httpentity = httpresponse.getEntity();
                 is = httpentity.getContent();
 
@@ -67,6 +68,8 @@ public class APIInterface extends AsyncTask<String, String, String> {
             return e.getMessage();
         }
 
+        result = Integer.toHexString(response);
+
         jsonString = buildString(is);
 
         //Parse to JSON
@@ -75,6 +78,7 @@ public class APIInterface extends AsyncTask<String, String, String> {
         if (jsonArray == null){
             jsonObject = parseJSONObject(jsonString);
         }
+
 
         //TODO sjekke HTTP response code
         Log.i(TAG, "HTTP Response Code: " + response);
@@ -91,15 +95,23 @@ public class APIInterface extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String result) {
 
-        if (jsonArray != null){
-            onTaskComplete.setTaskComplete(jsonArray);
-        }
+        if(result.equals("200")) {
 
-        if (jsonObject != null){
-            onParseJSONObjectComplete.setParseJSONObjectComplete(jsonObject);
+            if (jsonArray != null) {
+                onTaskComplete.setTaskComplete(jsonArray);
+            }
+
+            if (jsonObject != null) {
+                onParseJSONObjectComplete.setParseJSONObjectComplete(jsonObject);
+            }
         }
         else{
-
+            try {
+               jsonArray = new JSONArray("[]");
+                onTaskComplete.setTaskComplete(jsonArray);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
 
         Log.i(TAG, "Result: " + result);
@@ -120,7 +132,7 @@ public class APIInterface extends AsyncTask<String, String, String> {
                 is.close();
                 jsonString = sb.toString();
 
-                System.out.println("JSON-string from API: " + jsonString);
+                Log.d(TAG, "JSON-string from API: " + jsonString);
                 return jsonString;
 
             } catch (IOException e) {

@@ -28,9 +28,9 @@ public class DBHandler extends SQLiteOpenHelper {
     static String FAV_STOP_ID = "stopId";
     static String FAV_LINE_NO = "lineNo";
     static String FAV_DESTINATION = "destination";
-    static String FAV_DIRECTION = "direction";
+    static String FAV_FROM_STOP = "fromStop";
     //Create Friends tables query
-    private static final String CREATE_TABLE_FAV = "CREATE TABLE " + TABLE_FAV + "(" + FAV_ID + " INTEGER PRIMARY KEY," + FAV_STOP_ID + " TEXT," + FAV_LINE_NO + " TEXT," + FAV_DESTINATION + " TEXT," + FAV_DIRECTION + " INTEGER" +")";
+    private static final String CREATE_TABLE_FAV = "CREATE TABLE " + TABLE_FAV + "(" + FAV_ID + " INTEGER PRIMARY KEY," + FAV_STOP_ID + " TEXT," + FAV_LINE_NO + " TEXT," + FAV_DESTINATION + " TEXT," + FAV_FROM_STOP + " TEXT" +")";
 
 
 
@@ -68,7 +68,7 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(FAV_STOP_ID, fav.getStopId());
         values.put(FAV_LINE_NO, fav.getLineNo());
         values.put(FAV_DESTINATION, fav.getDestination());
-        values.put(FAV_DIRECTION, fav.getDirection());
+        values.put(FAV_FROM_STOP, fav.getFromStopName());
 
         db.insert(TABLE_FAV, null, values);
         db.close();
@@ -95,7 +95,7 @@ public class DBHandler extends SQLiteOpenHelper {
             f.setStopId(c.getString(c.getColumnIndex(FAV_STOP_ID)));
             f.setLineNo(c.getString(c.getColumnIndex(FAV_LINE_NO)));
             f.setDestination(c.getString(c.getColumnIndex(FAV_DESTINATION)));
-            f.setDirection(c.getInt(c.getColumnIndex(FAV_DIRECTION)));
+            f.setFromStopName(c.getString(c.getColumnIndex(FAV_FROM_STOP)));
 
             c.close();
             db.close();
@@ -123,7 +123,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 f.setStopId(c.getString(c.getColumnIndex(FAV_STOP_ID)));
                 f.setLineNo(c.getString(c.getColumnIndex(FAV_LINE_NO)));
                 f.setDestination(c.getString(c.getColumnIndex(FAV_DESTINATION)));
-                f.setDirection(c.getInt(c.getColumnIndex(FAV_DIRECTION)));
+                f.setFromStopName(c.getString(c.getColumnIndex(FAV_FROM_STOP)));
                 f.setId(c.getInt(c.getColumnIndex(FAV_ID)));
 
                 friendsList.add(f);

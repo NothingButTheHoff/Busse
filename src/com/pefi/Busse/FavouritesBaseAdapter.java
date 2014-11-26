@@ -3,6 +3,7 @@ package com.pefi.Busse;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +54,7 @@ public class FavouritesBaseAdapter extends BaseAdapter {
             convertView = mInflater.inflate(R.layout.favourites_list_item, null);
         }
 
+        View lineColor    = (View) convertView.findViewById(R.id.lineColor);
         TextView lineName = (TextView) convertView.findViewById(R.id.lineName);
         TextView first    = (TextView) convertView.findViewById(R.id.firstArrival);
         TextView second   = (TextView) convertView.findViewById(R.id.secondArrival);
@@ -64,6 +66,11 @@ public class FavouritesBaseAdapter extends BaseAdapter {
         first.setText(row_pos.getFirstArrival());
         second.setText(row_pos.getSecondArrival());
         third.setText(row_pos.getThirdArrival());
+
+        String hex = "#" + row_pos.getLineColor();
+        int i = Color.parseColor(hex);
+
+        lineColor.setBackgroundColor(i);
 
         return convertView;
 

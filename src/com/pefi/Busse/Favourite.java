@@ -6,23 +6,24 @@ package com.pefi.Busse;
 public class Favourite {
     public static final String TAG = "Favourite";
 
-    String stopId, lineNo, destination, lineName, firstArrival, secondArrival, thirdArrival;
-    int direction, id;
+    String stopId, lineNo, destination, lineName, firstArrival, secondArrival, thirdArrival, lineColor, fromStopName;
+    int id;
 
-    public Favourite(String stopId, String lineNo, String destination, int direction) {
+    public Favourite(String stopId, String lineNo, String destination, String fromStopName) {
         this.stopId     = stopId;
         this.lineNo      = lineNo;
         this.destination = destination;
-        this.direction   = direction;
+        this.fromStopName   = fromStopName;
 
     }
 
-    public Favourite(int id,String lineName, String firstArrival, String secondArrival, String thirdArrival) {
+    public Favourite(int id, String lineName, String firstArrival, String secondArrival, String thirdArrival, String lineColor) {
         this.lineName      = lineName;
         this.thirdArrival  = thirdArrival;
         this.secondArrival = secondArrival;
         this.firstArrival  = firstArrival;
         this.id            = id;
+        this.lineColor     = lineColor;
     }
 
     public Favourite(){
@@ -86,12 +87,12 @@ public class Favourite {
         this.thirdArrival = thirdArrival;
     }
 
-    public int getDirection() {
-        return direction;
+    public String getFromStopName() {
+        return fromStopName;
     }
 
-    public void setDirection(int direction) {
-        this.direction = direction;
+    public void setFromStopName(String fromStopName) {
+        this.fromStopName = fromStopName;
     }
 
     public int getId() {
@@ -101,5 +102,15 @@ public class Favourite {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getLineColor() {
+        return lineColor;
+    }
+
+    public void setLineColor(String lineColor) {
+        this.lineColor = lineColor;
+    }
+
+
 
 } //end class Favourite

@@ -51,6 +51,8 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
     TextView name;
     AlertDialog internetDialog;
 
+    DBHandler db;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,7 +61,7 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
 
         checkInternetConnection();
 
-        DBHandler db = new DBHandler(this);
+        db = new DBHandler(this);
 
         favourites = db.getAllFavourites();
 
@@ -301,6 +303,36 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
     }
 
 
+    public void showDeleteAllDialog(){
+
+        new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.delete_all_favs))
+                .setMessage(getString(R.string.cannot_be_undone))
+                .setPositiveButton(getString(R.string.delete), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        if (db.deleteAllFavourites()) {
+                            Toast.makeText(getBaseContext(), getString(R.string.all_favs_deleted), Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                        } else {
+                            Toast.makeText(getBaseContext(), getString(R.string.could_not_delete) + " " + getString(R.string.all_favs), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //Closes the dialog without any actions
+                    }
+                })
+                .show();
+
+    }
+
     public void showInfoDialog(){
 
         new AlertDialog.Builder(this)
@@ -390,20 +422,16 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
                 return true;
             case R.id.refresh:
 
-                if (favourites.size() > 0){
-                    progress = ProgressDialog.show(this, null, getString(R.string.updates), true);
-
-                    getAllFavourites();
-                    checkInternetConnection();
-                    return true;
-                }
-                return false;
+                return refresh();
                 //intent = new Intent(getBaseContext(), MainActivity.class);
                 //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 //startActivity(intent);
                 //overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             case R.id.info:
                 showInfoDialog();
+                return true;
+            case R.id.delete_all_favs:
+                showDeleteAllDialog();
                 return true;
             case android.R.id.home:
                 onBackPressed();
@@ -412,6 +440,16 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
         }
     }
 
+    public boolean refresh(){
+        if (favourites.size() > 0){
+            progress = ProgressDialog.show(this, null, getString(R.string.updates), true);
+
+            getAllFavourites();
+            checkInternetConnection();
+            return true;
+        }
+        return false;
+    }
 
     public boolean deleteFavourite(int i){
         DBHandler db = new DBHandler(this);
@@ -421,13 +459,6 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
         return false;
     }
 
-    public boolean onQueryTextSubmit (String query){
-        Log.d(TAG, "hit me!!!");
-        if( query.equals(".")){
-            return false;
-        }
-        return true;
-    }
 
 }//end MainActivity
 

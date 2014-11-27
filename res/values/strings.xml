@@ -10,6 +10,7 @@
     <string name="cannot_be_undone">Dette kan ikke angres</string>
     <string name="from">fra</string>
     <string name="now">nå</string>
+    <string name="not_available">ikke tilgjengelig</string>
     <string name="minutes">min</string>
     <string name="delete_fav">Slette fra favoritter?</string>
     <string name="was_deleted">ble slettet</string>

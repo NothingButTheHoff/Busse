@@ -42,11 +42,14 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
 
     APIInterface api;
 
-    String firstArrivaltime, secondArrivaltime, thirdArrivaltime;
+    String firstArrivaltime;
+    String secondArrivaltime;
+    String thirdArrivaltime;
     ProgressDialog progress;
 
 
-    private List<Favourite> rowItem, favourites;
+    private List<Favourite> rowItem;
+    private List<Favourite>favourites;
     private ListView list;
     TextView name;
     AlertDialog internetDialog;

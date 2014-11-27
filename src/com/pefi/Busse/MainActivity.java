@@ -37,14 +37,13 @@ import static android.widget.AdapterView.OnItemLongClickListener;
 
 public class MainActivity extends Activity implements OnItemLongClickListener{
     private final static String TAG = "MainActivity";
-    //TODO Legge til mer inputvalidering
-    //TODO Legge til søkeforslag??
 
     APIInterface api;
 
     String firstArrivaltime;
     String secondArrivaltime;
     String thirdArrivaltime;
+
     ProgressDialog progress;
 
 
@@ -308,31 +307,37 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
 
     public void showDeleteAllDialog(){
 
-        new AlertDialog.Builder(this)
-                .setTitle(getString(R.string.delete_all_favs))
-                .setMessage(getString(R.string.cannot_be_undone))
-                .setPositiveButton(getString(R.string.delete), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+        if (favourites.size() > 0){
 
-                        if (db.deleteAllFavourites()) {
-                            Toast.makeText(getBaseContext(), getString(R.string.all_favs_deleted), Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(intent);
-                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                        } else {
-                            Toast.makeText(getBaseContext(), getString(R.string.could_not_delete) + " " + getString(R.string.all_favs), Toast.LENGTH_SHORT).show();
+            new AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.delete_all_favs))
+                    .setMessage(getString(R.string.cannot_be_undone))
+                    .setPositiveButton(getString(R.string.delete), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            if (db.deleteAllFavourites()) {
+                                Toast.makeText(getBaseContext(), getString(R.string.all_favs_deleted), Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                            } else {
+                                Toast.makeText(getBaseContext(), getString(R.string.could_not_delete) + " " + getString(R.string.all_favs), Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                })
-                .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        //Closes the dialog without any actions
-                    }
-                })
-                .show();
+                    })
+                    .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            //Closes the dialog without any actions
+                        }
+                    })
+                    .show();
+        }
+        else{
+            Toast.makeText(this, getString(R.string.you_have_no_favs), Toast.LENGTH_SHORT).show();
+        }
 
     }
 
@@ -417,19 +422,13 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-        Intent intent;
 
         switch (item.getItemId()){
             case R.id.exit:
                 finish();
                 return true;
             case R.id.refresh:
-
                 return refresh();
-                //intent = new Intent(getBaseContext(), MainActivity.class);
-                //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                //startActivity(intent);
-                //overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             case R.id.info:
                 showInfoDialog();
                 return true;
@@ -440,6 +439,7 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
                 onBackPressed();
             default:
                 return super.onOptionsItemSelected(item);
+
         }
     }
 

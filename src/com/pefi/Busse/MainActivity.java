@@ -428,7 +428,8 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
                 finish();
                 return true;
             case R.id.refresh:
-                return refresh();
+                refresh();
+                return true;
             case R.id.info:
                 showInfoDialog();
                 return true;
@@ -437,6 +438,7 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
                 return true;
             case android.R.id.home:
                 onBackPressed();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
 

@@ -4,7 +4,6 @@ package com.pefi.Busse;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,8 +80,6 @@ public class FavouritesBaseAdapter extends BaseAdapter {
             second.setTextColor(Color.parseColor("#6A6A6A"));
         }
         else{
-
-            Log.d(TAG, row_pos.getFromStopName() + ", " + row_pos.getDestination() +", " + row_pos.getLineColor()  );
 
             String hex = "#" + row_pos.getLineColor();
             int i = Color.parseColor(hex);

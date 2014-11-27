@@ -149,15 +149,31 @@ public class LinesActivity extends Activity implements OnItemClickListener{
                 .setPositiveButton( getString(R.string.add), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+
                         DBHandler db = new DBHandler(getBaseContext());
-                        db.insertFavourite(new Favourite(Integer.toString(id), l.getLineRef(), l.getDestination(), stopName));
+                        String s = l.lineRef;
 
-                        Toast.makeText(getBaseContext(), l.getLineRef() + " " + l.getDestination() + " " + getString(R.string.was_added_to_fav), Toast.LENGTH_LONG).show();
+                        if (l.lineRef.equals("0")){
+                            Toast.makeText(getBaseContext(), getString(R.string.could_not_insert_line), Toast.LENGTH_LONG).show();
+                        }
+                        else{
+                            if (l.lineRef.length() > 4){
+                                int x = 1;
+                                s = s.substring(0,x)+s.substring(x+1);
+                            }
+                            else {
+                                s = l.lineRef;
+                            }
+                            Log.d(TAG, s);
+                            db.insertFavourite(new Favourite(Integer.toString(id), s, l.getDestination(), stopName));
 
-                        Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
-                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                            Toast.makeText(getBaseContext(), l.getLineNo() + " " + l.getDestination() + " " + getString(R.string.was_added_to_fav), Toast.LENGTH_LONG).show();
+
+                            Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                        }
                     }
                 })
                 .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {

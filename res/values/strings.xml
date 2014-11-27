@@ -43,4 +43,5 @@
 
     <!-- Empty views-->
     <string name="no_lines">Ingen linjer funnet...</string>
+    <string name="could_not_insert_line">Kunne ikke lagre linje. Ikke nok data tilgjengelig</string>
 </resources>

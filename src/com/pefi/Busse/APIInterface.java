@@ -68,7 +68,7 @@ public class APIInterface extends AsyncTask<String, String, String> {
             return e.getMessage();
         }
 
-        result = Integer.toHexString(response);
+        result = Integer.toString(response);
 
         jsonString = buildString(is);
 
@@ -99,10 +99,12 @@ public class APIInterface extends AsyncTask<String, String, String> {
 
             if (jsonArray != null) {
                 onTaskComplete.setTaskComplete(jsonArray);
+                return;
             }
 
             if (jsonObject != null) {
                 onParseJSONObjectComplete.setParseJSONObjectComplete(jsonObject);
+                return;
             }
         }
         else{

@@ -20,6 +20,7 @@
             android:visibility="gone"
             android:id="@+id/linesEmpty"
             android:gravity="center_vertical"
+            android:textColor="#ff424A52"
             android:paddingLeft="20dp"
             />
 

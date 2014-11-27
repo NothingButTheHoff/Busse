@@ -17,6 +17,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/no_hits"
             android:visibility="gone"
+            android:textColor="#ff424A52"
             android:id="@+id/stopsEmpty"
             android:gravity="center_vertical"
             android:paddingLeft="20dp"

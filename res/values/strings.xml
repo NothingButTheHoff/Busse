@@ -20,11 +20,11 @@
     <string name="all_favs">alle favoritter</string>
     <string name="all_favs_deleted">Alle favoritter ble slettet</string>
     <!--Progress messages-->
-    <string name="fetches_departures">Henter avganger</string>
-    <string name="searches_for_stops">Søker etter stoppesteder</string>
-    <string name="searches">Søker</string>
-    <string name="fetches_lines">Henter linjer</string>
-    <string name="updates">Oppdaterer</string>
+    <string name="fetches_departures">Henter avganger...</string>
+    <string name="searches_for_stops">Søker etter stoppesteder...</string>
+    <string name="searches">Søker...</string>
+    <string name="fetches_lines">Henter linjer...</string>
+    <string name="updates">Oppdaterer...</string>
     <string name="unknown">ukjent</string>
 
 

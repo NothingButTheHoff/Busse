@@ -20,10 +20,10 @@
     <string name="all_favs">all favourites</string>
     <string name="all_favs_deleted">All favourites was deleted</string>
     <!--Progress messages-->
-    <string name="fetches_departures">Fetches departures</string>
+    <string name="fetches_departures">Fetching departures...</string>
     <string name="searches_for_stops">Searching for stop...</string>
     <string name="searches">Searching...</string>
-    <string name="fetches_lines">Fetches lines</string>
+    <string name="fetches_lines">Fetching lines...</string>
     <string name="updates">Updating...</string>
     <string name="unknown">unknown</string>
 

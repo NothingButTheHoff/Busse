@@ -40,7 +40,7 @@ public class APIInterface extends AsyncTask<String, String, String> {
 
         String urlString = strings[0]; // URL to call
 
-        String result = "Success!";
+        String result = "Failure!";
         int response = -1;
 
         // GET
@@ -57,29 +57,31 @@ public class APIInterface extends AsyncTask<String, String, String> {
                 HttpEntity httpentity = httpresponse.getEntity();
                 is = httpentity.getContent();
 
-
             } catch (ClientProtocolException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
+
+            result = Integer.toString(response);
+
+            jsonString = buildString(is);
+
+            //Parse to JSON
+            jsonArray = parseJSONArray(jsonString);
+
+            if (jsonArray == null){
+                jsonObject = parseJSONObject(jsonString);
+            }
+
+            Log.i(TAG, "HTTP Response Code: " + response);
+
+            is.close();
+
         } catch (Exception e ) {
             return e.getMessage();
         }
-
-        result = Integer.toString(response);
-
-        jsonString = buildString(is);
-
-        //Parse to JSON
-        jsonArray = parseJSONArray(jsonString);
-
-        if (jsonArray == null){
-            jsonObject = parseJSONObject(jsonString);
-        }
-
-        Log.i(TAG, "HTTP Response Code: " + response);
 
         return result;
 

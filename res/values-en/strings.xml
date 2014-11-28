@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Busse</string>
+    <string name="search">Search</string>
+    <string name="search_hint">Search for stops...</string>
+    <string name="internet_required">This application needs an internet connection...</string>
+    <string name="turn_on_internet">Turn internet on?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="cannot_be_undone">This cannot be undone</string>
+    <string name="from">from</string>
+    <string name="now">now</string>
+    <string name="not_available">not available</string>
+    <string name="minutes">min</string>
+    <string name="delete_fav">Delete from favourites?</string>
+    <string name="was_deleted">was deleted</string>
+    <string name="could_not_delete">Could not delete</string>
+    <string name="delete_all_favs">Delete all favourites?</string>
+    <string name="delete_fav_label">Delete favourites</string>
+    <string name="all_favs">all favourites</string>
+    <string name="all_favs_deleted">All favourites was deleted</string>
+    <!--Progress messages-->
+    <string name="fetches_departures">Fetches departures</string>
+    <string name="searches_for_stops">Searching for stop...</string>
+    <string name="searches">Searching...</string>
+    <string name="fetches_lines">Fetches lines</string>
+    <string name="updates">Updating...</string>
+    <string name="unknown">unknown</string>
+
+
+    <string name="info">Info</string>
+    <string name="info_text">This app lets you save your most frequent used lines in public transport.
+        Search for the stop you want to travel from and select the desired line to add it to your favourites.
+        This gives you a quick and easy overview of the next departures from your favourite stops.
+        </string>
+    <string name="delete">Delete</string>
+    <string name="add">Add</string>
+    <string name="exit">Quit</string>
+    <string name="cancel">Cancel</string>
+    <string name="lines">Lines</string>
+    <string name="stops">Stops</string>
+    <string name="no_hits">No hits...</string>
+    <string name="update">Refresh</string>
+    <string name="last_updated">Last updated</string>
+    <string name="close">Close</string>
+
+    <string name="was_added_to_fav">was added to favourites</string>
+    <string name="add_to_favs">Add to favourites?</string>
+    <string name="you_have_no_favs">You have no favourites yet</string>
+
+    <!-- Empty views-->
+    <string name="no_lines">No lines found...</string>
+    <string name="could_not_insert_line">Could not save line. Data available is insufficient</string>
+</resources>

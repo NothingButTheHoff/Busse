@@ -81,6 +81,7 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
         api.setTaskCompleteListener(new APIInterface.OnTaskComplete() {
             @Override
             public void setTaskComplete(JSONArray json) {
+
                 progress.dismiss();
 
                 if (json != null && json.length() > 0) {

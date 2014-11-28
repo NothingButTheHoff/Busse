@@ -4,9 +4,17 @@ package com.pefi.Busse;
  * Created by pererikfinstad on 23/11/14.
  */
 public class Favourite {
-    public static final String TAG = "Favourite";
 
-    String stopId, lineNo, destination, lineName, firstArrival, secondArrival, thirdArrival, lineColor, fromStopName;
+    String stopId;
+    String lineNo;
+    String destination;
+    String lineName;
+    String firstArrival;
+    String secondArrival;
+    String thirdArrival;
+    String lineColor;
+    String fromStopName;
+
     int id;
 
     public Favourite(String stopId, String lineNo, String destination, String fromStopName) {

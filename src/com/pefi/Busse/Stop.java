@@ -4,8 +4,11 @@ package com.pefi.Busse;
  * Created by pererikfinstad on 12/11/14.
  */
 public class Stop {
-    public String name, district;
-    public int id, zone;
+    String name;
+    String district;
+
+    int id;
+    int zone;
 
     public Stop(String name,  String district, int id, int zone) {
         this.name = name;

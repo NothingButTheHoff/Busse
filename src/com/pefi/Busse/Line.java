@@ -4,9 +4,12 @@ package com.pefi.Busse;
  * Created by pererikfinstad on 12/11/14.
  */
 public class Line {
-    public static final String TAG = "LineClass";
 
-    public String lineNo,lineRef, destination,color;
+    public String lineNo;
+    String lineRef;
+    String destination;
+    String color;
+
     public int direction;
 
     public Line(String lineNo, String lineRef, String destination, String color) {

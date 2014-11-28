@@ -62,6 +62,7 @@ public class LinesActivity extends Activity implements OnItemClickListener{
 
 
         setListener();
+
     }
 
 

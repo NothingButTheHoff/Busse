@@ -180,19 +180,6 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
             }
         });
 
-        //api.setParseJSONObjectCompleteListener(new APIInterface.OnParseJSONObjectComplete() {
-        //    @Override
-        //    public void setParseJSONObjectComplete(JSONObject jsonObject) {
-        //        //do something with the json Object
-        //        try {
-        //            String n = jsonObject.getString("Destination");
-        //            //name.setText(n);
-        //        } catch (JSONException e) {
-        //            e.printStackTrace();
-        //        }
-        //    }
-        //});
-
     }
 
 

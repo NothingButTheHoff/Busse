@@ -26,6 +26,7 @@
     <string name="fetches_lines">Henter linjer...</string>
     <string name="updates">Oppdaterer...</string>
     <string name="unknown">ukjent</string>
+    <string name="no_data">Sanntidsdata ser ikke ut til å være tilgjengelig</string>
 
 
     <string name="info">Info</string>

@@ -160,6 +160,7 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
 
                             rowItem.add(fav);
 
+                            Log.d(TAG, fav.getLineColor());
                             list = (ListView) findViewById(R.id.favouriteList);
                             FavouritesBaseAdapter adapter = new FavouritesBaseAdapter(getBaseContext(), rowItem);
                             list.setAdapter(adapter);
@@ -176,6 +177,12 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                }
+                else{
+                    list = (ListView) findViewById(R.id.favouriteList);
+                    list.setVisibility(View.GONE);
+                    TextView empty = (TextView) findViewById(R.id.no_data);
+                    empty.setVisibility(View.VISIBLE);
                 }
             }
         });

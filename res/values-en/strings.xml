@@ -26,6 +26,8 @@
     <string name="fetches_lines">Fetching lines...</string>
     <string name="updates">Updating...</string>
     <string name="unknown">unknown</string>
+    <string name="no_data">Realtime data seems to be unavailable</string>
+
 
 
     <string name="info">Info</string>

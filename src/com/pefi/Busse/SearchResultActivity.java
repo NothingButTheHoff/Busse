@@ -115,9 +115,19 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
                                     }
                                 });
                             }
+                            else if(i == json.length()-1 && rowItem.size() == 0){
+                                Log.d(TAG, Integer.toString(rowItem.size()));
+                                list = (ListView) findViewById(R.id.stopList);
+                                list.setVisibility(View.GONE);
+                                TextView empty = (TextView) findViewById(R.id.stopsEmpty);
+                                empty.setVisibility(View.VISIBLE);
+                            }
+
                         } catch (JSONException e) {
                             e.printStackTrace();
+
                         }
+
 
                 } else {
                     //If the api returns 0 hits

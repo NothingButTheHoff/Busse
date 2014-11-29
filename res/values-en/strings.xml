@@ -19,6 +19,8 @@
     <string name="delete_fav_label">Delete favourites</string>
     <string name="all_favs">all favourites</string>
     <string name="all_favs_deleted">All favourites was deleted</string>
+    <string name="you_searched_for">You searched for:</string>
+
     <!--Progress messages-->
     <string name="fetches_departures">Fetching departures...</string>
     <string name="searches_for_stops">Searching for stop...</string>
@@ -31,7 +33,7 @@
 
 
     <string name="info">Info</string>
-    <string name="info_text">This app lets you save your most frequent used lines in public transport.
+    <string name="info_text">This app lets you save your most frequently used lines in public transport.
         Search for the stop you want to travel from and select the desired line to add it to your favourites.
         This gives you a quick and easy overview of the next departures from your favourite stops.
         </string>

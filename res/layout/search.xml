@@ -6,6 +6,16 @@
               android:orientation="vertical"
               android:background="@drawable/background_busse">
 
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/searchPhrase"
+            android:textStyle="italic"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#ffb1b1b1"
+            />
+
     <ListView
             android:id="@+id/stopList"
             android:layout_width="match_parent"

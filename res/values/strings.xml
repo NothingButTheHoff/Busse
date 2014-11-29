@@ -18,6 +18,7 @@
     <string name="delete_all_favs">Slette alle favoritter?</string>
     <string name="delete_fav_label">Slett favoritter</string>
     <string name="all_favs">alle favoritter</string>
+    <string name="you_searched_for">Du søkte etter:</string>
     <string name="all_favs_deleted">Alle favoritter ble slettet</string>
     <!--Progress messages-->
     <string name="fetches_departures">Henter avganger...</string>

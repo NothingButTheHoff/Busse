@@ -29,6 +29,7 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
     APIInterface api;
     ListView list;
     List<Stop> rowItem;
+    TextView searchPhrase;
 
     ProgressDialog progress;
 
@@ -45,6 +46,8 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
 
         api = new APIInterface();
 
+        searchPhrase = (TextView) findViewById(R.id.searchPhrase);
+
         // Get the intent, verify the action and get the query
         Intent intent = getIntent();
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
@@ -53,6 +56,8 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
             query = query.replaceAll("\\s+", "");
             Log.d(TAG, "Stop to be searched for: " + query);
             search(query);
+
+            searchPhrase.setText(getString(R.string.you_searched_for) + " " + query);
 
         }
 

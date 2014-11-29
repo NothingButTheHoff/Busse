@@ -111,45 +111,43 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
                     for (int i = 0; i < json.length(); i++)
                         try {
                             JSONObject jo = json.getJSONObject(i);
+
                             String lineName;
-                            try{
+
+                            try {
                                 lineName = jo.getJSONArray("MonitoredStopVisits").getJSONObject(0).getJSONObject("MonitoredVehicleJourney").getString("PublishedLineName") + " " + jo.getString("Destination");
-                            }
-                            catch (JSONException e){
+                            } catch (JSONException e) {
                                 e.getMessage();
                                 lineName = jo.getString("Destination");
                             }
 
-                            try{
+                            try {
                                 firstArrivaltime = jo.getJSONArray("MonitoredStopVisits").getJSONObject(0).getJSONObject("MonitoredVehicleJourney").getJSONObject("MonitoredCall").getString("ExpectedDepartureTime");
                                 firstArrivaltime = formatDate(firstArrivaltime);
-                            }
-                            catch (JSONException e){
+                            } catch (JSONException e) {
                                 firstArrivaltime = "n/a";
                                 e.getMessage();
                             }
-                            try{
+                            try {
                                 secondArrivaltime = jo.getJSONArray("MonitoredStopVisits").getJSONObject(1).getJSONObject("MonitoredVehicleJourney").getJSONObject("MonitoredCall").getString("ExpectedDepartureTime");
                                 secondArrivaltime = formatDate(secondArrivaltime);
-                            }
-                            catch (JSONException e){
+                            } catch (JSONException e) {
                                 secondArrivaltime = "n/a";
                                 e.getMessage();
                             }
-                            try{
-                                thirdArrivaltime  = jo.getJSONArray("MonitoredStopVisits").getJSONObject(2).getJSONObject("MonitoredVehicleJourney").getJSONObject("MonitoredCall").getString("ExpectedDepartureTime");
+                            try {
+                                thirdArrivaltime = jo.getJSONArray("MonitoredStopVisits").getJSONObject(2).getJSONObject("MonitoredVehicleJourney").getJSONObject("MonitoredCall").getString("ExpectedDepartureTime");
                                 thirdArrivaltime = formatDate(thirdArrivaltime);
-                            }
-                            catch (JSONException e){
+                            } catch (JSONException e) {
                                 thirdArrivaltime = "n/a";
                                 e.getMessage();
                             }
 
                             String color;
-                            try{
+
+                            try {
                                 color = jo.getJSONArray("MonitoredStopVisits").getJSONObject(0).getJSONObject("Extensions").getString("LineColour");
-                            }
-                            catch (JSONException e){
+                            } catch (JSONException e) {
                                 e.getMessage();
                                 color = "B4B4B4";
                             }
@@ -160,11 +158,10 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
 
                             rowItem.add(fav);
 
-                            Log.d(TAG, fav.getLineColor());
                             list = (ListView) findViewById(R.id.favouriteList);
                             FavouritesBaseAdapter adapter = new FavouritesBaseAdapter(getBaseContext(), rowItem);
                             list.setAdapter(adapter);
-                            list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                            list.setOnItemLongClickListener(new OnItemLongClickListener() {
                                 @Override
                                 public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
 
@@ -173,6 +170,7 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
                                 }
 
                             });
+                            adapter.notifyDataSetChanged();
 
                         } catch (JSONException e) {
                             e.printStackTrace();

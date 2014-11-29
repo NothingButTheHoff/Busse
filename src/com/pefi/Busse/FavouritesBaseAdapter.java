@@ -63,27 +63,24 @@ public class FavouritesBaseAdapter extends BaseAdapter {
 
         Favourite row_pos = rowItem.get(position);
 
+        String hex = "#" + row_pos.getLineColor();
+        int color = Color.parseColor(hex);
+
+        lineColor.setBackgroundColor(color);
+
         if (row_pos.getLineColor().equals("B4B4B4")) {
-            String hex = "#" + row_pos.getLineColor();
-            int color = Color.parseColor(hex);
-
-            lineColor.setBackgroundColor(color);
-
-            //lineName.setTextColor(Color.parseColor("#888888"));
-            //fromStop.setTextColor(Color.parseColor("#888888"));
-            //second.setTextColor(Color.parseColor("#888888"));
 
             lineName.setText(row_pos.getLineName());
             fromStop.setText(row_pos.getFromStopName());
             first.setText("");
             second.setText(R.string.not_available);
             third.setText("");
+
+            //lineName.setTextColor(Color.parseColor("#888888"));
+            //fromStop.setTextColor(Color.parseColor("#888888"));
+            //second.setTextColor(Color.parseColor("#888888"));
         }
         else{
-            String hex = "#" + row_pos.getLineColor();
-            int color = Color.parseColor(hex);
-
-            lineColor.setBackgroundColor(color);
 
             lineName.setText(row_pos.getLineName());
             fromStop.setText(row_pos.getFromStopName());
@@ -92,8 +89,8 @@ public class FavouritesBaseAdapter extends BaseAdapter {
             third.setText(row_pos.getThirdArrival());
         }
 
-
         return convertView;
+
 
     }
 

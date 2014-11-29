@@ -29,7 +29,6 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:id="@+id/lineName"
                 android:paddingLeft="20dp"
-                android:background="#ffb4b4b4"
                 android:textColor="#ff424A52"
                     />
 
@@ -72,7 +71,7 @@
                 android:id="@+id/secondArrival"
                 android:layout_weight="1"
                 android:gravity="center|center_vertical"
-                android:textColor="#fff4f4f4"
+                android:textColor="#ffe6e6e6"
                 />
 
         <TextView
@@ -82,8 +81,9 @@
                 android:id="@+id/thirdArrival"
                 android:layout_weight="1"
                 android:gravity="center|center_vertical"
-                android:textColor="#fff4f4f4"
+                android:textColor="#ffe6e6e6"
                 />
+
     </LinearLayout>
 
 </LinearLayout>

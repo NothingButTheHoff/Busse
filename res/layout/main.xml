@@ -7,6 +7,13 @@
         >
 
     <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/updated"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#ffb1b1b1"
+            />
+    <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -14,15 +21,9 @@
             android:visibility="gone"
             android:textColor="#ff424A52"
             android:id="@+id/no_data"
-            android:gravity="center_vertical"
+            android:gravity="center_vertical|center_horizontal"
             android:paddingLeft="20dp"
-            />
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/updated"
-            android:layout_gravity="center_horizontal"
-            android:textColor="#ffb1b1b1"
+            android:layout_gravity="center"
             />
 
     <ListView

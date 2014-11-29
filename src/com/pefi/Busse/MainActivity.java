@@ -84,7 +84,6 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
     public void getAllFavourites(){
 
             String favoriteStops = buildString(favourites);
-            Log.d(TAG, favoriteStops);
 
             api = new APIInterface();
             api.execute("Favourites/GetFavourites?favouritesRequest=" + favoriteStops);

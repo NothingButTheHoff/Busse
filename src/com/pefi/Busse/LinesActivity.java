@@ -85,7 +85,6 @@ public class LinesActivity extends Activity implements OnItemClickListener{
 
 
                     for (int i = 0; i < json.length(); i++) {
-                        System.out.println("Antall kall: " + Integer.toString(i));
                         try {
                             JSONObject jo = json.getJSONObject(i);
 
@@ -93,10 +92,9 @@ public class LinesActivity extends Activity implements OnItemClickListener{
 
                             JSONObject j = jo.getJSONObject("MonitoredVehicleJourney");
                             JSONObject j2 = jo.getJSONObject("Extensions");
-                            System.out.println(jo.names());
                             Line item = new Line(j.getString("PublishedLineName"), j.getString("LineRef"), j.getString("DestinationName"), j2.getString("LineColour"));
 
-                            Log.d(TAG, "LineNo: " + item.getLineNo() + "- LineName: " + item.getLineRef());
+                            Log.d(TAG, "LineNo: " + item.getLineNo());
                             if (! rowItem.contains(item)){
                                 rowItem.add(item);
                             }
@@ -128,7 +126,7 @@ public class LinesActivity extends Activity implements OnItemClickListener{
                     });
                 }
                 else {
-                    System.out.println("No data from the API");
+                    Log.d(TAG, "No data from the API");
                     list = (ListView) findViewById(R.id.linesList);
                     list.setVisibility(View.GONE);
                     TextView empty = (TextView) findViewById(R.id.linesEmpty);
@@ -165,7 +163,6 @@ public class LinesActivity extends Activity implements OnItemClickListener{
                             else {
                                 s = l.lineRef;
                             }
-                            Log.d(TAG, s);
                             db.insertFavourite(new Favourite(Integer.toString(id), s, l.getDestination(), stopName));
 
                             Toast.makeText(getBaseContext(), l.getLineNo() + " " + l.getDestination() + " " + getString(R.string.was_added_to_fav), Toast.LENGTH_LONG).show();

@@ -212,8 +212,6 @@ public class MainActivity extends Activity implements OnItemLongClickListener{
     @Override
     protected void onResume() {
         super.onResume();
-        checkInternetConnection();
-
     }
 
     @Override

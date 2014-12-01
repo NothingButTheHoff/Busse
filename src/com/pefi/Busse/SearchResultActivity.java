@@ -53,11 +53,13 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
 
-            query = query.replaceAll("\\s+", "");
+            searchPhrase.setText(getString(R.string.you_searched_for) + " " + query);
+
+            //makes sure the url accepts whitespaces and removed whitespace at end
+            query = query.replaceAll("\\s+$", "").replaceAll("\\s+", "%20");
             Log.d(TAG, "Stop to be searched for: " + query);
             search(query);
 
-            searchPhrase.setText(getString(R.string.you_searched_for) + " " + query);
 
         }
 
@@ -158,6 +160,7 @@ public class SearchResultActivity extends Activity implements OnItemClickListene
                 return super.onOptionsItemSelected(item);
         }
     }
+
 
 
 }// end SearchResultActivity
